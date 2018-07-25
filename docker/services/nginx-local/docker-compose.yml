@@ -13,7 +13,7 @@ services:
       - 80
       - 443
     environment:
-      - "VIRTUAL_HOST=nas.*,www.*,omv.*,nas-controller.nas"
+      - "VIRTUAL_HOST=NAS.cloudns.cc,nas,nas.*,www.*,omv.*,nas-controller.nas"
       - "VIRTUAL_PROTO=http"
       - "VIRTUAL_PORT=80"
       - CERT_NAME=NAS.cloudns.cc
