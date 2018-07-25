@@ -1,0 +1,92 @@
+version: "2"
+
+networks:
+  ldap:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  open-ldap:
+    image: "osixia/openldap:1.2.0"
+    hostname: "open-ldap"
+    restart: always
+    environment:
+      - "LDAP_ORGANISATION=NAS"
+      - "LDAP_DOMAIN=nas.nas"
+      - "LDAP_ADMIN_PASSWORD=ADMIN_PASSWORD"
+      - "LDAP_CONFIG_PASSWORD=CONFIG_PASSWORD"
+      - "LDAP_TLS=true"
+      - "LDAP_TLS_ENFORCE=false"
+      - "LDAP_TLS_CRT_FILENAME=ldap_server.crt"
+      - "LDAP_TLS_KEY_FILENAME=ldap_server.key"
+      - "LDAP_TLS_CA_CRT_FILENAME=ldap_server.crt"
+    volumes:
+      - ./certs:/container/service/slapd/assets/certs
+      - ./ldap_data/var/lib:/var/lib/ldap
+      - ./ldap_data/etc/ldap/slapd.d:/etc/ldap/slapd.d
+    networks:
+      - ldap
+    ports:
+      - 172.21.0.1:389:389
+      - 172.21.0.1:636:636
+
+  phpldapadmin:
+    image: "osixia/phpldapadmin:0.7.1"
+    hostname: "nas.nas"
+    restart: always
+    networks:
+      - ldap
+      - docker0
+    expose:
+      - 443
+    links:
+      - open-ldap:open-ldap-server
+    volumes:
+      - ./certs:/container/service/phpldapadmin/assets/apache2/certs
+    environment:
+      - VIRTUAL_HOST=ldap.*
+      - VIRTUAL_PORT=443
+      - VIRTUAL_PROTO=https
+      - CERT_NAME=NAS.cloudns.cc
+
+      - "PHPLDAPADMIN_LDAP_HOSTS=open-ldap-server"
+      #- "PHPLDAPADMIN_HTTPS=false"
+      - "PHPLDAPADMIN_HTTPS_CRT_FILENAME=certs/ldap_server.crt"
+      - "PHPLDAPADMIN_HTTPS_KEY_FILENAME=private/ldap_server.key"
+      - "PHPLDAPADMIN_HTTPS_CA_CRT_FILENAME=certs/ldap_server.crt"
+      - "PHPLDAPADMIN_LDAP_CLIENT_TLS_REQCERT=allow"
+
+  ldap-ssp:
+    image: openfrontier/ldap-ssp:https
+    volumes:
+      #- ./ssp/mods-enabled/ssl.conf:/etc/apache2/mods-enabled/ssl.conf
+      #- ./ssp/sites-enabled/default-ssl.conf:/etc/apache2/sites-enabled/default-ssl.conf
+      - /etc/ssl/certs/ssl-cert-snakeoil.pem:/etc/ssl/certs/ssl-cert-snakeoil.pem
+      - /etc/ssl/private/ssl-cert-snakeoil.key:/etc/ssl/private/ssl-cert-snakeoil.key
+    restart: always
+    networks:
+      - ldap
+      - docker0
+    expose:
+      - 80
+    links:
+      - open-ldap:open-ldap-server
+    environment:
+      - VIRTUAL_HOST=ssp.*
+      - VIRTUAL_PORT=80
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+
+      - "LDAP_URL=ldap://open-ldap-server:389"
+      - "LDAP_BINDDN=cn=admin,dc=nas,dc=nas"
+      - "LDAP_BINDPW=ADMIN_PASSWORD"
+      - "LDAP_BASE=ou=users,dc=nas,dc=nas"
+      - "MAIL_FROM=admin@nas.nas"
+      - "PWD_MIN_LENGTH=8"
+      - "PWD_MIN_LOWER=3"
+      - "PWD_MIN_DIGIT=2"
+      - "SMTP_HOST="
+      - "SMTP_USER="
+      - "SMTP_PASS="
+

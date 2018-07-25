@@ -1,0 +1,44 @@
+# extended LDIF
+#
+# LDAPv3
+# base <ou=users,dc=nas,dc=nas> with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# users, nas.nas
+dn: ou=users,dc=nas,dc=nas
+objectClass: organizationalUnit
+objectClass: top
+ou: users
+
+# UserName Surname, users, nas.nas
+dn: cn=UserName Surname,ou=users,dc=nas,dc=nas
+givenName: UserName
+sn: Surname
+cn: UserName Surname
+uid: user1
+userPassword:: e1123467890==
+uidNumber: 1001
+gidNumber: 500
+homeDirectory: /home/users/user1
+loginShell: /bin/sh
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+
+# Artiom N, users, nas.nas
+dn: cn=Artiom N,ou=users,dc=nas,dc=nas
+givenName: Artiom
+sn: N
+cn: Artiom N
+uid: artiom_n
+userPassword:: e1e1123467890==
+uidNumber: 1000
+gidNumber: 500
+homeDirectory: /home/users/artiom
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+loginShell: /bin/bash
+

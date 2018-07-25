@@ -1,0 +1,16 @@
+# change to your own suffix for the field [dc=srv,dc=world]
+dn: ou=users,dc=nas,dc=nas
+objectClass: organizationalUnit
+objectClass: top
+ou: users
+
+dn: ou=groups,dc=nas,dc=nas
+objectClass: organizationalUnit
+objectClass: top
+ou: groups
+
+dn: cn=ldap_users,ou=groups,dc=nas,dc=nas
+cn: ldap_users
+gidNumber: 500
+objectClass: posixGroup
+objectClass: top

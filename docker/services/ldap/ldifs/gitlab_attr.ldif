@@ -1,0 +1,13 @@
+dn: cn=custom-attributes,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: custom-attributes
+olcAttributeTypes: ( 1.2.840.113556.1.4.221
+    NAME 'sAMAccountName'
+    SYNTAX '1.3.6.1.4.1.1466.115.121.1.15'
+    SINGLE-VALUE )
+olcObjectClasses: ( 1.3.6.1.4.1.4203.666.100.1
+    NAME 'customAttributes'
+    SUP top
+    AUXILIARY
+    DESC 'Custom attributes class'
+    MAY (sAMAccountName) )

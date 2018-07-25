@@ -1,0 +1,28 @@
+# Define password policy
+dn: ou=policies,dc=nas
+objectClass: organizationalUnit
+ou: policies
+
+dn: cn=default,ou=policies,dc=nas
+objectClass: applicationProcess
+objectClass: pwdPolicy
+cn: default
+pwdAllowUserChange: TRUE
+pwdAttribute: userPassword
+pwdCheckQuality: 1
+# 7 days
+pwdExpireWarning: 604800
+pwdFailureCountInterval: 0
+pwdGraceAuthNLimit: 0
+pwdInHistory: 5
+pwdLockout: TRUE
+# 30 minutes
+pwdLockoutDuration: 1800
+# 180 days
+pwdMaxAge: 15552000
+pwdMaxFailure: 5
+pwdMinAge: 0
+pwdMinLength: 6
+pwdMustChange: TRUE
+pwdSafeModify: FALSE
+
