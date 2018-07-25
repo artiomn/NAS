@@ -1,0 +1,23 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  nginx-local:
+    restart: always
+    image: nginx:alpine
+    expose:
+      - 80
+      - 443
+    environment:
+      - "VIRTUAL_HOST=nas.*,www.*,omv.*,nas-controller.nas"
+      - "VIRTUAL_PROTO=http"
+      - "VIRTUAL_PORT=80"
+      - CERT_NAME=NAS.cloudns.cc
+    volumes:
+      - ./local-config:/etc/nginx/conf.d
+    networks:
+      - docker0
