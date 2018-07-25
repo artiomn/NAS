@@ -1,0 +1,35 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  nginx-proxy:
+    networks:
+      - docker0
+    restart: always
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./certs:/etc/nginx/certs:ro
+      - ./vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./local-config:/etc/nginx/conf.d
+      - ./nginx.tmpl:/app/nginx.tmpl
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
+
+  letsencrypt-dns:
+    image: adferrand/letsencrypt-dns
+    volumes:
+      - ./certs/letsencrypt:/etc/letsencrypt
+    environment:
+      - "LETSENCRYPT_USER_MAIL=MAIL@MAIL.COM"
+      - "LEXICON_PROVIDER=cloudns"
+      - "LEXICON_PROVIDER_OPTIONS=--auth-id=CLOUDNS_ID --auth-password=CLOUDNS_PASSWORD --delegated=NAS.cloudns.cc"
+
