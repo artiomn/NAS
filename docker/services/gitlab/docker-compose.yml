@@ -1,0 +1,266 @@
+# https://github.com/sameersbn/docker-gitlab
+
+version: '2'
+
+networks:
+  gitlab:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  redis:
+    restart: always
+    image: sameersbn/redis:latest
+    command:
+    - --loglevel warning
+    networks:
+      - gitlab
+    volumes:
+    - ./gitlab/redis:/var/lib/redis:Z
+
+  postgresql:
+    restart: always
+    image: sameersbn/postgresql:9.6-2
+    volumes:
+    - ./gitlab/postgresql:/var/lib/postgresql:Z
+    networks:
+      - gitlab
+    environment:
+    - DB_USER=gitlab
+    - DB_PASS=YOUR_DB_PASSWORD
+    - DB_NAME=gitlabhq_production
+    - DB_EXTENSION=pg_trgm
+
+  plantuml:
+    restart: always
+    image: plantuml/plantuml-server:jetty
+    cpuset: '1'
+#    ports:
+#      - "127.0.0.1:9542:8080"
+    ports:
+      - "172.18.0.1:8080:8080"
+    networks:
+      - gitlab
+
+  gitlab:
+    restart: always
+    image: sameersbn/gitlab:10.6.3
+    links:
+    - plantuml:plantuml
+    depends_on:
+    - redis
+    - postgresql
+    - plantuml
+    ports:
+    - "11443:443"
+    - "11022:22"
+    expose:
+    - 443
+    - 80
+    - 22
+    volumes:
+    - ./gitlab/gitlab:/home/git/data:Z
+    - /tank0/apps/repos:/home/git/data/repositories:Z
+    - /tank0/apps/repos/system/backup:/home/git/data/backups:Z
+    - /tank0/apps/repos/system/builds:/home/git/data/builds:Z
+    - /tank0/apps/repos/system/lfs-objects:/home/git/data/shared/lfs-objects:Z
+    - /tank0/apps/repos/system/public:/uploads/-/system:Z
+    networks:
+      - gitlab
+      - docker0
+    environment:
+    - "VIRTUAL_HOST=git.*,gitlab.*"
+    - VIRTUAL_PORT=443
+    - VIRTUAL_PROTO=https
+    - CERT_NAME=NAS.cloudns.cc
+
+    - DEBUG=false
+
+    # Default: 1
+    - NGINX_WORKERS=2
+    # Default: 3
+    - UNICORN_WORKERS=3
+    # Default: 25
+    - SIDEKIQ_CONCURRENCY=15
+
+    - DB_ADAPTER=postgresql
+    - DB_HOST=postgresql
+    - DB_PORT=5432
+    - DB_USER=gitlab
+    - DB_PASS=YOUR_DB_PASSWORD
+    - DB_NAME=gitlabhq_production
+
+    - REDIS_HOST=redis
+    - REDIS_PORT=6379
+
+    - TZ=Europe/Moscow
+    - GITLAB_TIMEZONE=Moscow
+
+    - GITLAB_HTTPS=true
+    - SSL_SELF_SIGNED=true
+    #- SSL_VERIFY_CLIENT=true
+    - NGINX_HSTS_MAXAGE=2592000
+
+    - GITLAB_HOST=git.NAS.cloudns.cc
+    #- GITLAB_PORT=11443
+    - GITLAB_SSH_PORT=11022
+    - GITLAB_RELATIVE_URL_ROOT=
+    - GITLAB_SECRETS_DB_KEY_BASE=YOUR_DB_PASSWORD
+    - GITLAB_SECRETS_SECRET_KEY_BASE=YOUR_KEY_BASE
+    - GITLAB_SECRETS_OTP_KEY_BASE=YOUR_OTP_KEY_BASE
+
+    - GITLAB_SIGNUP_ENABLED=false
+
+    # Defaults to 5iveL!fe.
+    - GITLAB_ROOT_PASSWORD=
+    - GITLAB_ROOT_EMAIL=YOUR_MAIL@yandex.ru
+
+    - GITLAB_NOTIFY_ON_BROKEN_BUILDS=true
+    - GITLAB_NOTIFY_PUSHER=false
+
+    - GITLAB_EMAIL=NAS@yandex.ru
+    - GITLAB_EMAIL_REPLY_TO=noreply@yandex.ru
+    - GITLAB_INCOMING_EMAIL_ADDRESS=NAS@yandex.ru
+
+    - GITLAB_BACKUP_SCHEDULE=daily
+    - GITLAB_BACKUP_TIME=01:00
+
+    - GITLAB_MATTERMOST_ENABLED=true
+    - GITLAB_MATTERMOST_URL=""
+
+    - SMTP_ENABLED=true
+    - SMTP_DOMAIN=www.example.com
+    - SMTP_HOST=smtp.yandex.ru
+    - SMTP_PORT=25
+    - SMTP_USER=NAS@yandex.ru
+    - SMTP_PASS=YOUR_SMTP_PASSWORD
+    - SMTP_STARTTLS=true
+    - SMTP_AUTHENTICATION=login
+
+    - IMAP_ENABLED=true
+    - IMAP_HOST=imap.yandex.ru
+    - IMAP_PORT=993
+    - IMAP_USER=NAS@yandex.ru
+    - IMAP_PASS=YOUR_IMAP_PASSWORD
+    - IMAP_SSL=true
+    - IMAP_STARTTLS=false
+
+    - OAUTH_ENABLED=false
+    - OAUTH_AUTO_SIGN_IN_WITH_PROVIDER=
+    - OAUTH_ALLOW_SSO=
+    - OAUTH_BLOCK_AUTO_CREATED_USERS=true
+    - OAUTH_AUTO_LINK_LDAP_USER=false
+    - OAUTH_AUTO_LINK_SAML_USER=false
+    - OAUTH_EXTERNAL_PROVIDERS=
+
+    - OAUTH_CAS3_LABEL=cas3
+    - OAUTH_CAS3_SERVER=
+    - OAUTH_CAS3_DISABLE_SSL_VERIFICATION=false
+    - OAUTH_CAS3_LOGIN_URL=/cas/login
+    - OAUTH_CAS3_VALIDATE_URL=/cas/p3/serviceValidate
+    - OAUTH_CAS3_LOGOUT_URL=/cas/logout
+
+    - OAUTH_GOOGLE_API_KEY=
+    - OAUTH_GOOGLE_APP_SECRET=
+    - OAUTH_GOOGLE_RESTRICT_DOMAIN=
+
+    - OAUTH_FACEBOOK_API_KEY=
+    - OAUTH_FACEBOOK_APP_SECRET=
+
+    - OAUTH_TWITTER_API_KEY=
+    - OAUTH_TWITTER_APP_SECRET=
+
+    - OAUTH_GITHUB_API_KEY=
+    - OAUTH_GITHUB_APP_SECRET=
+    - OAUTH_GITHUB_URL=
+    - OAUTH_GITHUB_VERIFY_SSL=
+
+    - OAUTH_GITLAB_API_KEY=
+    - OAUTH_GITLAB_APP_SECRET=
+
+    - OAUTH_BITBUCKET_API_KEY=
+    - OAUTH_BITBUCKET_APP_SECRET=
+
+    - OAUTH_SAML_ASSERTION_CONSUMER_SERVICE_URL=
+    - OAUTH_SAML_IDP_CERT_FINGERPRINT=
+    - OAUTH_SAML_IDP_SSO_TARGET_URL=
+    - OAUTH_SAML_ISSUER=
+    - OAUTH_SAML_LABEL="Our SAML Provider"
+    - OAUTH_SAML_NAME_IDENTIFIER_FORMAT=urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+    - OAUTH_SAML_GROUPS_ATTRIBUTE=
+    - OAUTH_SAML_EXTERNAL_GROUPS=
+    - OAUTH_SAML_ATTRIBUTE_STATEMENTS_EMAIL=
+    - OAUTH_SAML_ATTRIBUTE_STATEMENTS_NAME=
+    - OAUTH_SAML_ATTRIBUTE_STATEMENTS_FIRST_NAME=
+    - OAUTH_SAML_ATTRIBUTE_STATEMENTS_LAST_NAME=
+
+    - OAUTH_CROWD_SERVER_URL=
+    - OAUTH_CROWD_APP_NAME=
+    - OAUTH_CROWD_APP_PASSWORD=
+
+    - OAUTH_AUTH0_CLIENT_ID=
+    - OAUTH_AUTH0_CLIENT_SECRET=
+    - OAUTH_AUTH0_DOMAIN=
+
+    - OAUTH_AZURE_API_KEY=
+    - OAUTH_AZURE_API_SECRET=
+    - OAUTH_AZURE_TENANT_ID=
+
+    - LDAP_ENABLED=true
+    #- LDAP_LABEL=nas
+    - LDAP_HOST=172.21.0.1
+    - LDAP_PORT=389
+    #- LDAP_METHOD=start_tls
+    - LDAP_METHOD=plain
+    - LDAP_UID=uid
+    - LDAP_PASS=ADMIN_PASSWORD
+    #- LDAP_CA_FILE=
+    # Default: false.
+    #- LDAP_BLOCK_AUTO_CREATED_USERS=true
+    - LDAP_BASE=ou=users,dc=nas,dc=nas
+    - LDAP_BIND_DN=cn=admin,dc=nas,dc=nas
+    - LDAP_ACTIVE_DIRECTORY=false
+    #- LDAP_USER_FILTER=(givenName=)
+    #- "LDAP_USER_FILTER=(objectClass=inetOrgPerson)"
+    - LDAP_ALLOW_USERNAME_OR_EMAIL_LOGIN=true
+
+    #- USERMAP_UID=$(id -u git)
+    #- USERMAP_GID=$(id -g git)
+
+#  registry:
+#    container_name: docker-registry
+#    restart: always
+#    image: registry:2.4.1
+#    volumes:
+#    - /srv/gitlab/shared/registry:/registry
+#    - /srv/certs:/certs
+#    environment:
+#    - REGISTRY_LOG_LEVEL=info
+#    - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/registry
+#    - REGISTRY_AUTH_TOKEN_REALM=http://git.labs.lc:10080/jwt/auth
+#    - REGISTRY_AUTH_TOKEN_SERVICE=container_registry
+#    - REGISTRY_AUTH_TOKEN_ISSUER=gitlab-issuer
+#    - REGISTRY_AUTH_TOKEN_ROOTCERTBUNDLE=/certs/registry-auth.crt
+#    - REGISTRY_STORAGE_DELETE_ENABLED=true
+#    - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/registry.crt
+#    - REGISTRY_HTTP_TLS_KEY=/certs/registry.key
+#    ports:
+#    - "0.0.0.0:5000:5000"
+#    networks:
+#     mynet:
+#      aliases:
+#      - registry.git.labs.lc
+#
+#  gitlab-runner:
+#   container_name: gitlab-runner
+#   image: gitlab/gitlab-runner:latest
+#   volumes:
+#     - /srv/gitlab-runner/data:/home/gitlab_ci_multi_runner/data
+#     - /srv/gitlab-runner/config:/etc/gitlab-runner
+#     - /var/run/docker.sock:/var/run/docker.sock:rw
+#   environment:
+#     - CI_SERVER_URL=http://git.labs.lc:10080/ci
+#   restart: always
+#   dns: 192.168.0.1
+#
