@@ -31,5 +31,6 @@ services:
     environment:
       - "LETSENCRYPT_USER_MAIL=MAIL@MAIL.COM"
       - "LEXICON_PROVIDER=cloudns"
-      - "LEXICON_PROVIDER_OPTIONS=--auth-id=CLOUDNS_ID --auth-password=CLOUDNS_PASSWORD --delegated=NAS.cloudns.cc"
+      - "LEXICON_OPTIONS=--delegated system.cloudns.cc"
+      - "LEXICON_PROVIDER_OPTIONS=--auth-id=CLOUDNS_ID --auth-password=CLOUDNS_PASSWORD"
 
