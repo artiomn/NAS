@@ -1,0 +1,54 @@
+version: '2'
+
+networks:
+  seafile:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  seafile:
+    image: seafileltd/seafile
+    restart: always
+    expose:
+      - 80
+      - 443
+    environment:
+      - VIRTUAL_HOST=cloud.*
+      - VIRTUAL_PORT=80
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+      - SEAFILE_SERVER_HOSTNAME=cloud.NAS.cloudns.cc
+    links:
+      - mysql
+    networks:
+      - seafile
+      - docker0
+    volumes:
+      - /tank0/apps/cloud/seafile:/shared
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - seafile
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+      MYSQL_DATABASE: seafile
+      MYSQL_USER: seafile
+    volumes:
+      - /tank0/apps/cloud/mysql:/var/lib/mysql
+
+  collabora:
+    image: collabora/code
+    restart: always
+    environment:
+      - DOMAIN=office.NAS.cloudns.cc
+
+volumes:
+  mysql:
+    driver: local
+  seafile:
+    driver: local
