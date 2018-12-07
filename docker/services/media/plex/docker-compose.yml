@@ -1,0 +1,29 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  plex:
+    image: linuxserver/plex:latest
+    restart: always
+    networks:
+      - docker0
+    expose:
+      - 32400
+    volumes:
+      - /tank0/apps/media/plex/config:/config
+      - /tank0/apps/media/plex/transcode:/transcode
+      - /tank0/apps/media/plex/playlists:/playlists
+      - /tank0/user_data/music:/data/music
+      - /tank0/user_data/videos:/data/movies
+    environment:
+      - PGID=33
+      - PUID=33
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=32400
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
