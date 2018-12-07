@@ -1,0 +1,32 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  # Office.
+  office:
+    container_name: collabora
+    image: sfoxdev/collabora-code
+    #image: collabora/code
+    networks:
+      - docker0
+    restart: always
+    expose:
+      - 9980
+#    volumes:
+#      - /etc/ssl/private/ssl-cert-snakeoil.key:/app/onlyoffice/DocumentServer/data/certs/onlyoffice.key:ro
+#      - /etc/ssl/certs/ssl-cert-snakeoil.pem:/app/onlyoffice/DocumentServer/data/certs/onlyoffice.crt:ro
+    cap_add:
+      - MKNOD
+    environment:
+      - domain=office.NAS.cloudns.cc
+      - username=admin
+      - password=SecRet1
+      - VIRTUAL_HOST=office.*
+      - VIRTUAL_PORT=9980
+      - VIRTUAL_PROTO=https
+      - CERT_NAME=NAS.cloudns.cc
+
