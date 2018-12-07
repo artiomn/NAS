@@ -1,0 +1,28 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  volumio:
+    image: jbonjean/volumio
+    #restart: always
+    networks:
+      - docker0
+    expose:
+      - 3000
+    devices:
+      - /dev/snd
+    volumes:
+      - /tank0/user_data/music:/var/lib/mpd/music/:ro
+      - /tank0/apps/media/volumio/data:/data
+    environment:
+      - HOST=media.NAS.cloudns.cc:3000
+      - HOST_USER=33:33
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=3000
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
