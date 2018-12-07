@@ -1,0 +1,104 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+volumes:
+  nextcloud:
+  db:
+
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - /tank0/apps/cloud/nextcloud/db:/var/lib/postgresql/data
+    env_file:
+      - db.env
+
+  redis:
+    image: redis
+    restart: always
+    # Only for the version 3.
+    #sysctls:
+    #  net.core.somaxconn: '511'
+
+#  # Full-text search engine.
+#  solr:
+#    image: solr:6-alpine
+#    restart: always
+#    container_name: solr
+#    volumes:
+#      - /tank0/apps/cloud/nextcloud/solr:/opt/solr/server/solr/mycores:Z
+#    entrypoint:
+#      - docker-entrypoint.sh
+#      - solr-precreate
+#      - nextant
+
+  app:
+    build: ./app
+    volumes:
+      # Main folder, needed for updating
+      - /tank0/apps/cloud/nextcloud/html:/var/www/html
+      - /tank0/user_data:/user_data
+    networks:
+      - default
+    restart: always
+    env_file:
+      - db.env
+    environment:
+      - POSTGRES_HOST=db
+    depends_on:
+      - db
+      - redis
+
+  cron:
+    build: ./app
+    restart: always
+    volumes:
+      - /tank0/apps/cloud/nextcloud/html:/var/www/html
+    entrypoint: /cron.sh
+    depends_on:
+      - db
+      - redis
+
+  web:
+    build: ./web
+    restart: always
+    expose:
+      - 80
+    volumes:
+      - /tank0/apps/cloud/nextcloud/html:/var/www/html:ro
+    volumes_from:
+      - app
+    networks:
+      - default
+      - docker0
+    environment:
+      - VIRTUAL_HOST=cloud.*
+      - VIRTUAL_PORT=80
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+    depends_on:
+      - app
+
+  dav-proxy:
+    restart: always
+    image: nginx:alpine
+    expose:
+      - 80
+    environment:
+      - "VIRTUAL_HOST=dav.*"
+      - "VIRTUAL_PROTO=http"
+      - "VIRTUAL_PORT=80"
+      - CERT_NAME=NAS.cloudns.cc
+    links:
+      - web
+    volumes:
+      - ./dav-proxy-config:/etc/nginx/conf.d
+    networks:
+      - docker0
+      - default
+
