@@ -13,7 +13,7 @@ services:
     networks:
       - internal
     volumes:
-      - /tank0/apps/media/media/piwigo/data:/var/lib/mysql
+      - /tank0/apps/media/piwigo/data:/var/lib/mysql
     environment:
       - MYSQL_USER=piwigo
       - MYSQL_PASSWORD=changemetoo
