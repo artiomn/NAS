@@ -1,0 +1,25 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  htpcmanager:
+    image: linuxserver/htpcmanager
+    restart: always
+    expose:
+      - 8085
+    volumes:
+      - /tank0/apps/frontend/htpcmanager:/config
+    networks:
+      - docker0
+    environment:
+      - PGID=33
+      - PUID=33
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=nas,www.*,system.cloudns.cc
+      - VIRTUAL_PORT=8085
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
