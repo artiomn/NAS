@@ -1,0 +1,28 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  mediagoblin:
+    image: vimagick/mediagoblin
+    networks:
+      - docker0
+    expose:
+      - 80
+    volumes:
+      - /tank0/user_data/:/var/lib/mediagoblin
+    environment:
+      - MG_USER=admin
+      - MG_PASS=admin
+      - MG_MAIL=admin@easypi.info
+      - PGID=33
+      - PUID=33
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=80
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+    restart: always
