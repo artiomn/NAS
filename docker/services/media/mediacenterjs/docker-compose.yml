@@ -1,0 +1,26 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  mediacenterjs:
+    image: veggiemonk/mediacenterjs
+    restart: always
+    networks:
+      - docker0
+    expose:
+      - 80
+      - 443
+      - 3000
+    volumes:
+      - /tank0/user_data/music:/mnt/media/hdd/music
+      - /tank0/user_data/videos:/mnt/media/hdd/movies
+    environment:
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=3000
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
