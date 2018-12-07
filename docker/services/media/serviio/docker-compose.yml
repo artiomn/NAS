@@ -1,0 +1,28 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  serviio:
+    image: lsiocommunity/serviio
+    restart: always
+    networks:
+      - docker0
+    expose:
+      - 23423
+    volumes:
+      - /tank0/apps/media/serviio/config:/config
+      - /tank0/apps/media/serviio/transcode:/transcode
+      - /tank0/user_data:/media
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - PGID=33
+      - PUID=33
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=23423
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
