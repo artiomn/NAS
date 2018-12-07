@@ -1,0 +1,65 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+  music_stack:
+    driver: bridge
+
+services:
+  icecast:
+    image: vitiman/alpine-icecast:latest
+    restart: always
+    expose:
+      - 8000
+    volumes:
+      - ./icecast.xml:/usr/share/icecast/icecast.xml:ro
+#      - /tank0/apps/media/icecast/logs:/var/log/icecast
+    networks:
+      - music_stack
+      - docker0
+    environment:
+      - VIRTUAL_HOST=music.*
+      - VIRTUAL_PORT=8000
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+
+  mpd:
+    restart: always
+    image: vitiman/alpine-mpd:latest
+    depends_on:
+      - icecast
+    networks:
+      - music_stack
+      - docker0
+    ports:
+      - "6600:6600"
+    volumes:
+      - /tank0/user_data/music/Music:/var/lib/mpd/music:ro
+      - /tank0/apps/media/mpd/playlists:/var/lib/mpd/playlists
+      - /tank0/apps/media/mpd/database:/var/lib/mpd/database
+      - /tank0/apps/media/mpd/logs:/var/log/mpd
+      - ./mpd.conf:/etc/mpd.conf:ro
+  sima:
+    image: vitiman/alpine-sima:latest
+    depends_on:
+      - mpd
+    networks:
+      - music_stack
+
+  ympd:
+    image: vitiman/alpine-ympd:latest
+    expose:
+      - 8080
+    depends_on:
+      - mpd
+    networks:
+      - music_stack
+      - docker0
+    environment:
+      - VIRTUAL_HOST=audio.*
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+
