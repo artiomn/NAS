@@ -1,0 +1,24 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  gerbera:
+    build: ./app
+    volumes:
+      - /tank0/user_data:/movies-container
+    networks:
+      - docker0
+    restart: always
+    expose:
+      - 49152
+    environment:
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=49152
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+
