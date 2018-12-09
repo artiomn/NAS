@@ -1,0 +1,3 @@
+[submodule "docker/services/filesystem/nginx_webdav/docker-webdav"]
+	path = docker/services/filesystem/nginx_webdav/docker-webdav
+	url = https://github.com/artiomn/docker-webdav.git
