@@ -32,18 +32,20 @@ services:
       - DB_NAME=gitlabhq_production
       - DB_EXTENSION=pg_trgm
 
-#  plantuml:
-#    restart: always
-#    image: plantuml/plantuml-server
-#    image: plantuml/plantuml-server:jetty
-#    ports:
-#      - "127.0.0.1:9542:8080"
-#    ports:
-#      - "plantuml:8080:8080"
-#    expose:
-#      - 8080
-#    networks:
-#      - gitlab
+  plantuml:
+    restart: always
+    image: plantuml/plantuml-server:jetty
+    expose:
+      - 8080
+    networks:
+      - docker0
+    environment:
+      # Huge diagrams.
+      - PLANTUML_LIMIT_SIZE=8192
+      - VIRTUAL_HOST=uml.*
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
 
   gitlab:
     restart: always
@@ -51,6 +53,7 @@ services:
     depends_on:
       - redis
       - postgresql
+      - plantuml
     ports:
       - "11022:22"
     expose:
