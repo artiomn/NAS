@@ -1,0 +1,80 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+  internal:
+
+services:
+  app:
+    image: beget/sprutio-app
+    links:
+      - redis:fm-redis
+      - rpc:fm-rpc
+    networks:
+      - internal
+    volumes_from:
+      - frontend
+    volumes:
+      - "/tank0/apps/fs/sprutio/ssl:/app/ssl:rw"
+      - "/tank0/apps/fs/sprutio/logs:/var/log/fm:rw"
+    env_file:
+      - "./app.env"
+
+  rpc:
+    image: beget/sprutio-rpc
+    networks:
+      - internal
+    links:
+      - redis:fm-redis
+    volumes_from:
+      - cron
+    volumes:
+      - "/tank0/user_data:/mnt:rw"
+      - "/tank0/apps/fs/sprutio/var:/var/spool/fm:rw"
+      - "/tank0/apps/fs/sprutio/logs:/var/log/fm:rw"
+    env_file:
+      - "./rpc.env"
+
+  nginx:
+    image: beget/sprutio-nginx
+    links:
+      - app:fm-app
+    volumes_from:
+      - cron
+      - frontend
+    networks:
+      - internal
+      - docker0
+    volumes:
+      - "/tank0/apps/fs/sprutio/ssl:/app/ssl:ro"
+      - "/tank0/apps/fs/sprutio/logs:/var/log/nginx:rw"
+    expose:
+      - 80
+      - 443
+    environment:
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=files.*
+      - VIRTUAL_PORT=80
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+
+  frontend:
+    image: beget/sprutio-frontend
+    networks:
+      - internal
+
+  cron:
+    image: beget/sprutio-cron
+    volumes:
+      - "/tank0/apps/sprutio/downloads:/tmp/fm:rw"
+    networks:
+      - internal
+
+  redis:
+    image: redis:3.0
+    networks:
+      - internal
+
+  # EOF
