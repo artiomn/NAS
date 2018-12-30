@@ -234,7 +234,6 @@ services:
     volumes:
       - /tank0/apps/gitlab/gitlab-runner/data:/home/gitlab_ci_multi_runner/data
       - /tank0/apps/gitlab/gitlab-runner/config:/etc/gitlab-runner
-      - /var/run/docker.sock:/var/run/docker.sock:rw
     environment:
       - CI_SERVER_URL=https://gitlab.NAS.cloudns.cc
     restart: always
