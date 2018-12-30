@@ -31,8 +31,8 @@ RUN curl -sSL https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl &
 RUN mkdir /var/www/html/data && \
         chmod -R 770 /var/www/html/data && \
 	mkdir -p /var/www/html/apps/aria2 && \
-        chmod -R 770 /var/www/html/aria2 && \
-	touch /var/www/html/aria2c.sess
+        chmod -R 770 /var/www/html/apps/aria2 && \
+	touch /var/www/html/apps/aria2c.sess
 
 # Allow framing into Organizr.
 #RUN sed -i "s/\(.*header.*X-Frame-Options:.*SAMEORIGIN.*\)/\/\/\1/" /usr/src/nextcloud/lib/private/legacy/response.php
