@@ -1,0 +1,28 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  ubooquity:
+    image: linuxserver/ubooquity
+    restart: always
+    networks:
+      - docker0
+    expose:
+      - 2202
+      - 2203
+    volumes:
+      - /tank0/user_data/books/Books:/books:ro
+      - /tank0/user_data/books/Books:/files:ro
+      - /tank0/apps/library/ubooquity:/config:rw
+    environment:
+      - VIRTUAL_HOST=library.*
+      - VIRTUAL_PORT=2202
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=default
+
+      - PGID=33
+      - PUID=33

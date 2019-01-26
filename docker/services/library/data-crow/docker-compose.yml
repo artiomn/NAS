@@ -1,0 +1,25 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  datacrow:
+    image: netresearch/data-crow
+    restart: always
+    volumes:
+      - /tank0/user_data/books/:/src
+    expose:
+      - 80
+      - 9000
+      - 9001
+    networks:
+      - docker0
+    environment:
+      - VIRTUAL_HOST=library.*
+      - VIRTUAL_PORT=80
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=default
+
