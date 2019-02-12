@@ -44,6 +44,8 @@ services:
       - /tank0/apps/cloud/nextcloud/html:/var/www/html
       - /tank0/user_data:/user_data
     networks:
+      # Need for LDAP.
+      - docker0
       - default
     restart: always
     env_file:
