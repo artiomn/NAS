@@ -26,11 +26,12 @@ services:
 
   letsencrypt-dns:
     image: adferrand/letsencrypt-dns
+    restart: always
     volumes:
       - ./certs/letsencrypt:/etc/letsencrypt
     environment:
       - "LETSENCRYPT_USER_MAIL=MAIL@MAIL.COM"
       - "LEXICON_PROVIDER=cloudns"
-      - "LEXICON_OPTIONS=--delegated system.cloudns.cc"
+      - "LEXICON_OPTIONS=--delegated NAS.cloudns.cc"
       - "LEXICON_PROVIDER_OPTIONS=--auth-id=CLOUDNS_ID --auth-password=CLOUDNS_PASSWORD"
 
