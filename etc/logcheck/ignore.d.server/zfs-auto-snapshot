@@ -1,0 +1,1 @@
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ zfs-auto-snap: \@zfs-auto-snap_[[:alnum:]-]+, [0-9]+ created, [0-9]+ destroyed, 0 warnings.$
