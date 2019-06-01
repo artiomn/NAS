@@ -2,13 +2,17 @@ version: "2"
 
 networks:
   ldap:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
   docker0:
     external:
       name: docker0
 
 services:
   open-ldap:
-    image: "osixia/openldap:1.2.0"
+    image: "osixia/openldap"
     hostname: "open-ldap"
     restart: always
     environment:
@@ -16,6 +20,9 @@ services:
       - "LDAP_DOMAIN=nas.nas"
       - "LDAP_ADMIN_PASSWORD=ADMIN_PASSWORD"
       - "LDAP_CONFIG_PASSWORD=CONFIG_PASSWORD"
+      - "LDAP_READONLY_USER=true"
+      - "LDAP_READONLY_USER_USERNAME=readonly"
+      - "LDAP_READONLY_USER_PASSWORD=READONLY_PASSWORD
       - "LDAP_TLS=true"
       - "LDAP_TLS_ENFORCE=false"
       - "LDAP_TLS_CRT_FILENAME=ldap_server.crt"
@@ -48,7 +55,7 @@ services:
       - VIRTUAL_HOST=ldap.*
       - VIRTUAL_PORT=443
       - VIRTUAL_PROTO=https
-      - CERT_NAME=NAS.cloudns.cc
+      - CERT_NAME=system.cloudns.cc
 
       - "PHPLDAPADMIN_LDAP_HOSTS=open-ldap-server"
       #- "PHPLDAPADMIN_HTTPS=false"
@@ -60,8 +67,6 @@ services:
   ldap-ssp:
     image: openfrontier/ldap-ssp:https
     volumes:
-      #- ./ssp/mods-enabled/ssl.conf:/etc/apache2/mods-enabled/ssl.conf
-      #- ./ssp/sites-enabled/default-ssl.conf:/etc/apache2/sites-enabled/default-ssl.conf
       - /etc/ssl/certs/ssl-cert-snakeoil.pem:/etc/ssl/certs/ssl-cert-snakeoil.pem
       - /etc/ssl/private/ssl-cert-snakeoil.key:/etc/ssl/private/ssl-cert-snakeoil.key
     restart: always
