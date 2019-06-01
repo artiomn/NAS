@@ -55,7 +55,7 @@ services:
       - VIRTUAL_HOST=ldap.*
       - VIRTUAL_PORT=443
       - VIRTUAL_PROTO=https
-      - CERT_NAME=system.cloudns.cc
+      - CERT_NAME=NAS.cloudns.cc
 
       - "PHPLDAPADMIN_LDAP_HOSTS=open-ldap-server"
       #- "PHPLDAPADMIN_HTTPS=false"
