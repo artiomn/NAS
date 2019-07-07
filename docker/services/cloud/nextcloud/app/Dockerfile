@@ -1,12 +1,10 @@
-FROM nextcloud:13.0.7-fpm
- 
+FROM nextcloud:16-fpm
+
 #        supervisor \
-RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list \
+RUN echo "deb http://ftp.debian.org/debian stretch main" >> /etc/apt/sources.list \
     && apt-get update && apt-get install --no-install-recommends -y \
         aria2 \
-        bzip2 \
         ffmpeg \
-        libmagickwand-dev \
         libgmp3-dev \
         libc-client-dev \
         libkrb5-dev \
@@ -18,25 +16,26 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/so
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
     && ln -s "/usr/include/$(dpkg-architecture --query DEB_BUILD_MULTIARCH)/gmp.h" /usr/include/gmp.h \
-    && docker-php-ext-install bz2 gmp imap \
-    && pecl install imagick smbclient inotify \
-    && docker-php-ext-enable imagick smbclient inotify
+    && docker-php-ext-install gmp imap \
+    && pecl install smbclient inotify \
+    && docker-php-ext-enable smbclient inotify \
+    && rm -rf /var/lib/apt/lists/*
 #    && mkdir /var/log/supervisord /var/run/supervisord
 
+#
+# Downloaders.
+#
+
 # Download latest youtube-dl binary, need python runtime
-RUN curl -sSL https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl && \
-        chmod a+rx /usr/local/bin/youtube-dl
-
-# Make not existing ./data/ for specified permission
-RUN mkdir /var/www/html/data && \
-        chmod -R 770 /var/www/html/data && \
-	mkdir -p /var/www/html/apps/aria2 && \
-        chmod -R 770 /var/www/html/apps/aria2 && \
-	touch /var/www/html/apps/aria2c.sess
-
-# Allow framing into Organizr.
-#RUN sed -i "s/\(.*header.*X-Frame-Options:.*SAMEORIGIN.*\)/\/\/\1/" /usr/src/nextcloud/lib/private/legacy/response.php
-RUN  { \
+RUN curl -sSL https://yt-dl.org/latest/youtube-dl -o /usr/local/bin/youtube-dl \
+    && chmod a+rx /usr/local/bin/youtube-dl \
+    # Make not existing ./data/ for specified permission
+    && mkdir /var/www/html/data \
+    && chmod -R 770 /var/www/html/data \
+    && mkdir -p /var/www/html/apps/aria2 \
+    && chmod -R 770 /var/www/html/apps/aria2 \
+    && touch /var/www/html/apps/aria2/aria2c.sess \
+    && { \
         echo '[www]'; \
         echo 'pm=dynamic'; \
         echo 'pm.max_children=25'; \
@@ -46,9 +45,14 @@ RUN  { \
         echo 'pm.max_requests=700'; \
     } > /usr/local/etc/php-fpm.d/zz-www.conf; \
     \
-    echo 'memory_limit=2048M' > /usr/local/etc/php/conf.d/memory-limit.ini;
+    echo 'memory_limit=2048M' > /usr/local/etc/php/conf.d/memory-limit.ini \
+   # ocDownloader requirements.
+   && sed -i 's|exec "$@"|sudo -u www-data -- /usr/bin/aria2c --enable-rpc --rpc-allow-origin-all -c -D --log=/dev/stdout --check-certificate=false --log-level=info|' /entrypoint.sh \
+   && echo 'umask 0007' >> /entrypoint.sh \
+   && echo 'exec "$@"' >> /entrypoint.sh
 
 COPY redis.config.php /usr/src/nextcloud/config/redis.config.php
-COPY entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /entrypoint.sh
+# --save-session=/var/www/html/apps/aria2/aria2c.sess --save-session-interval=2 --continue=true --input-file=/var/www/html/apps/aria2/aria2c.sess --rpc-save-upload-metadata=true --force-save=true
+
+#USER www-data
