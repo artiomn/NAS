@@ -91,6 +91,16 @@ proxy_hide_header X-Frame-Options;
 proxy_set_header Proxy "";
 {{ end }}
 
+### LDAP
+
+proxy_cache_path cache/  keys_zone=auth_cache:10m;
+
+upstream ldap-backend {
+        server {{ $.Env.LDAP_BACKEND }}:{{ or $.Env.LDAP_LOGIN_PORT "9000" }};
+}
+
+###
+
 {{ $enable_ipv6 := eq (or ($.Env.ENABLE_IPV6) "") "true" }}
 server {
 	server_name _; # This is just an invalid value which will never trigger on a real hostname.
@@ -175,6 +185,14 @@ upstream {{ $upstream_name }} {
 {{/* Get the VIRTUAL_ROOT By containers w/ use fastcgi root */}}
 {{ $vhost_root := or (first (groupByKeys $containers "Env.VIRTUAL_ROOT")) "/var/www/public" }}
 
+{{/* Nginx LDAP authentication enabled */}}
+{{ $ext_ldap_auth := parseBool (or (first (groupByKeys $containers "Env.LDAP_EXT_AUTH")) "false") }}
+
+{{/* User need to be participated in these groups to use service */}}
+{{ $ldap_add_groups := or (first (groupByKeys $containers "Env.LDAP_EXT_ADD_GROUPS")) "" }}
+
+{{/* Use HTML login page or HTTP Basic authentication */}}
+{{ $ldap_use_login_page := parseBool (or $.Env.LDAP_USE_LOGIN_PAGE "false" ) }}
 
 {{/* Get the first cert name defined by containers w/ the same vhost */}}
 {{ $certName := (first (groupByKeys $containers "Env.CERT_NAME")) }}
@@ -281,7 +299,132 @@ server {
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
 
+        {{ if ($ext_ldap_auth) }}
+        ### LDAP
+
+        {{ if ($ldap_use_login_page) }}
+        location /login-ldap {
+	        proxy_pass http://{{ $.Env.LDAP_BACKEND }}:{{ or $.Env.LDAP_LOGIN_PORT "9000" }};
+                # Login service returns a redirect to the original URI
+                # and sets the cookie for the ldap-auth daemon
+                proxy_set_header X-Target $request_uri;
+
+                proxy_pass_request_body off;
+                proxy_set_header Content-Length "";
+                proxy_cache auth_cache;
+                proxy_cache_valid 200 10m;
+
+                proxy_cache_key "$http_authorization$cookie_nginxauth";
+
+                proxy_set_header X-CookieName "nginxauth";
+                proxy_set_header Cookie nginxauth=$cookie_nginxauth;
+        }
+        {{ end }}
+
+	location = /auth-proxy {
+		internal;
+
+                # The ldap-auth daemon listens on port $LDAP_BACKEND_PORT (8888, by default), as set
+                # in nginx-ldap-auth-daemon.py.
+                # Change the IP address if the daemon is not running on
+                # the same host as NGINX/NGINX Plus.
+                proxy_pass http://{{ $.Env.LDAP_BACKEND }}:{{ or $.Env.LDAP_BACKEND_PORT "8888" }};
+
+                proxy_pass_request_body off;
+                proxy_set_header Content-Length "";
+                proxy_cache auth_cache;
+                proxy_cache_valid 200 10m;
+
+                # The following directive adds the cookie to the cache key
+                proxy_cache_key "$http_authorization$cookie_nginxauth";
+
+                # As implemented in nginx-ldap-auth-daemon.py, the ldap-auth daemon
+                # communicates with a LDAP server, passing in the following
+                # parameters to specify which user account to authenticate. To
+                # eliminate the need to modify the Python code, this file contains
+                # 'proxy_set_header' directives that set the values of the
+                # parameters. Set or change them as instructed in the comments.
+                #
+                #    Parameter      Proxy header
+                #    -----------    ----------------
+                #    url            X-Ldap-URL
+                #    starttls       X-Ldap-Starttls
+                #    basedn         X-Ldap-BaseDN
+                #    binddn         X-Ldap-BindDN
+                #    bindpasswd     X-Ldap-BindPass
+                #    cookiename     X-CookieName
+                #    realm          X-Ldap-Realm
+                #    template       X-Ldap-Template
+
+                # (Required) Set the URL and port for connecting to the LDAP server,
+                # by replacing 'example.com'.
+                # Do not mix ldaps-style URL and X-Ldap-Starttls as it will not work.
+                proxy_set_header X-Ldap-URL      "{{ $.Env.LDAP_HOST }}";
+
+                # (Optional) Establish a TLS-enabled LDAP session after binding to the
+                # LDAP server.
+                # This is the 'proper' way to establish encrypted TLS connections, see
+                # http://www.openldap.org/faq/data/cache/185.html
+                {{ if eq ("$.Env.LDAP_METHOD") "start_tls" }}
+                proxy_set_header X-Ldap-Starttls "true";
+                {{ end }}
+
+                # (Required) Set the Base DN, by replacing the value enclosed in
+                # double quotes.
+                proxy_set_header X-Ldap-BaseDN   "{{ $.Env.LDAP_BASE }}";
+
+                # (Required) Set the Bind DN, by replacing the value enclosed in
+                # double quotes.
+                proxy_set_header X-Ldap-BindDN   "{{ $.Env.LDAP_BIND_DN }}";
+
+                # (Required) Set the Bind password, by replacing 'secret'.
+                proxy_set_header X-Ldap-BindPass "{{ $.Env.LDAP_PASS }}";
+
+                # (Required) The following directives set the cookie name and pass
+                # it, respectively. They are required for cookie-based
+                # authentication. Comment them out if using HTTP basic
+                # authentication.
+                proxy_set_header X-CookieName "nginxauth";
+                proxy_set_header Cookie nginxauth=$cookie_nginxauth;
+
+                # (Required if using Microsoft Active Directory as the LDAP server)
+                # Set the LDAP template by uncommenting the following directive.
+                #proxy_set_header X-Ldap-Template "(sAMAccountName=%(username)s)";
+
+                # (May be required if using Microsoft Active Directory and
+                # getting "In order to perform this operation a successful bind
+                # must be completed on the connection." errror)
+                #proxy_set_header X-Ldap-DisableReferrals "true";
+
+                # (Optional if using OpenLDAP as the LDAP server) Set the LDAP
+                # template by uncommenting the following directive and replacing
+                # '(cn=%(username)s)' which is the default set in
+                # nginx-ldap-auth-daemon.py.
+                {{ $ldap_filter := $.Env.LDAP_USER_FILTER }}
+                {{ $ldap_filter := (printf "(&%s%s)" $ldap_filter $ldap_add_groups) }}
+
+                proxy_set_header X-Ldap-Template "{{ $ldap_filter }}";
+
+                # (Optional) Set the realm name, by uncommenting the following
+                # directive and replacing 'Restricted' which is the default set
+                # in nginx-ldap-auth-daemon.py.
+                #proxy_set_header X-Ldap-Realm    "Restricted";
+        }
+        ### /LDAP
+        {{ end }}
+
 	location / {
+                {{ if ($ext_ldap_auth) }}
+		auth_request /auth-proxy;
+
+		{{ if ($ldap_use_login_page) }}
+		# redirect 401 to login form
+		# Comment them out if using HTTP basic authentication.
+		# or authentication popup won't show
+		error_page 401 =200 /login-ldap;
+		{{ end }}
+		{{ end }}
+
 		{{ if eq $proto "uwsgi" }}
 		include uwsgi_params;
 		uwsgi_pass {{ trim $proto }}://{{ trim $upstream_name }};

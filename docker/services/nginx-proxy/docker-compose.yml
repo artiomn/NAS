@@ -1,13 +1,30 @@
 version: '2'
 
 networks:
+  internal:
   docker0:
     external:
       name: docker0
 
 services:
-  nginx-proxy:
+  ldap-auth:
+    image: linuxserver/ldap-auth:latest
+    container_name: ldap-auth
     networks:
+      - internal
+      - docker0
+    environment:
+      - TZ=Europe/Moscow
+    expose:
+      - 8888
+      - 9000
+    restart: unless-stopped
+
+  nginx-proxy:
+    depends_on:
+      - ldap-auth
+    networks:
+      - internal
       - docker0
     restart: always
     image: jwilder/nginx-proxy
@@ -21,6 +38,21 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./local-config:/etc/nginx/conf.d
       - ./nginx.tmpl:/app/nginx.tmpl
+    environment:
+      - DEFAULT_HOST=nas.nas
+      - LDAP_BACKEND=ldap-auth
+      #- LDAP_BACKEND_PORT=8888
+      #- LDAP_LOGIN_PORT=9000
+      - LDAP_HOST=ldap://172.21.0.1:389
+      #- LDAP_METHOD=start_tls
+      - LDAP_METHOD=plain
+      - LDAP_UID=uid
+      - LDAP_PASS=LDAP_PASSWORD
+      - LDAP_BASE=ou=users,dc=nas,dc=nas
+      - LDAP_BIND_DN=cn=readonly,dc=nas,dc=nas
+      - LDAP_USER_FILTER=(uid=%(username)s)
+      #- LDAP_USE_LOGIN_PAGE=true
+
     labels:
       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
 
@@ -34,4 +66,3 @@ services:
       - "LEXICON_PROVIDER=cloudns"
       - "LEXICON_OPTIONS=--delegated NAS.cloudns.cc"
       - "LEXICON_PROVIDER_OPTIONS=--auth-id=CLOUDNS_ID --auth-password=CLOUDNS_PASSWORD"
-
