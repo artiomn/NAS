@@ -1,0 +1,33 @@
+version: '2'
+
+networks:
+  internal:
+  docker0:
+    external:
+      name: docker0
+    
+services:
+  jdownloader:
+    image: jlesage/jdownloader-2
+    restart: always
+    expose:
+      - 5800
+    volumes:
+      - /tank0/apps/jdownloader:/config:rw
+      - /tank0/user_data/downloads:/output:rw
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - internal
+      - docker0
+    environment:
+      - GROUP_ID=33
+      - USER_ID=33
+      - TZ=Europe/Moscow
+      - KEEP_APP_RUNNING=1
+      - VIRTUAL_HOST=download-files.*
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=5800
+      - CERT_NAME=NAS.cloudns.cc
+      - LDAP_EXT_AUTH=true
+      - LDAP_EXT_ADD_GROUPS=(memberOf=cn=users_cloud,ou=groups,dc=nas,dc=nas)
+

@@ -1,0 +1,35 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  transmission:
+    build: ./docker-transmission
+    restart: always
+    expose:
+      - 9091
+      - 51413
+      - 51413/udp
+    volumes:
+      - /tank0/apps/download_system/transmission/config:/config
+      - /tank0/user_data/downloads:/downloads
+      - /tank0/user_data/downloads:/watch
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - docker0
+    environment:
+      #- TRANSMISSION_WEB_HOME=/kettu
+      - TRANSMISSION_WEB_HOME=/transmission-web-control/
+      #- TRANSMISSION_WEB_HOME=/combustion-release/
+      - PGID=33
+      - PUID=33
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=download-torrent.*
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=9091
+      - CERT_NAME=NAS.cloudns.cc
+      - LDAP_EXT_AUTH=true
+      - LDAP_EXT_ADD_GROUPS=(memberOf=cn=users_cloud,ou=groups,dc=nas,dc=nas)

@@ -1,0 +1,28 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+ 
+services:
+  youtube-dl-webui:
+    image: d0u9/youtube-dl-webui
+    restart: always
+    networks:
+      - docker0
+    expose:
+      - 5000
+    volumes:
+      - /tank0/user_data/downloads:/tmp/youtube_dl
+      - /tank0/apps/download_system/youtubedl/errors.log:/usr/src/youtube_dl_webui/errors.log
+      - /tank0/apps/download_system/youtubedl/info.log:/usr/src/youtube_dl_webui/info.log
+    environment:
+      - VIRTUAL_HOST=download-stream.*
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=80
+      - CERT_NAME=NAS.cloudns.cc
+      - PUID=33
+      - PGID=33
+      - LDAP_EXT_AUTH=true
+      - LDAP_EXT_ADD_GROUPS=(memberOf=cn=users_cloud,ou=groups,dc=nas,dc=nas)
