@@ -41,16 +41,24 @@ done </proc/modules | sed -nr "s@^/lib/modules/`uname -r`/kernel/drivers/net(/.*
 <spoiler title="/etc/initramfs-tools/scripts/init-premount/00_bonding_init">
 ```bash
 #!/bin/sh -e
+
 PREREQS=""
+
 case $1 in
-        prereqs) echo "${PREREQS}"; exit 0;;
+    prereqs) echo "${PREREQS}"; exit 0;;
 esac
+
+BOND_MASTER=${BOND_MASTER:-bond0}
 
 echo "Network interfaces loaded: "
 echo `ls /sys/class/net`
 
-echo "Creating bonding master 'bond0'..."
-echo "+bond0" >  /sys/class/net/bonding_masters
+if [ ! -e "/sys/class/net/${BOND_MASTER}" ]; then
+    echo "Creating bonding master 'bond0'..."
+    echo "+${BOND_MASTER}" > /sys/class/net/bonding_masters
+fi
+
+echo "Master interface: ${BOND_MASTER}"
 
 for x in $cmdline; do
     case $x in
@@ -62,7 +70,7 @@ done
 
 IFS=","
 for x in $bondslaves; do
-    echo "+$x" > /sys/class/net/bond0/bonding/slaves
+    echo "+$x" > "/sys/class/net/${BOND_MASTER}/bonding/slaves"
 done
 ```
 </spoiler>
