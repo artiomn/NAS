@@ -49,6 +49,9 @@ esac
 echo "Network interfaces loaded: "
 echo `ls /sys/class/net`
 
+echo "Creating bonding master 'bond0'..."
+echo "+bond0" >  /sys/class/net/bonding_masters
+
 for x in $cmdline; do
     case $x in
     bondslaves=*)
