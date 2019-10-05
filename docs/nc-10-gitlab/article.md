@@ -1,6 +1,6 @@
 # GitLab в NAS
 
-![](https://habrastorage.org/webt/lc/ds/go/lcdsgoqvkupc9ywr3m-83iqu-sy.jpeg)
+![](images/lcdsgoqvkupc9ywr3m-83iqu-sy.jpeg)
 
 При наличии [работоспособного NAS с докером](https://habr.com/post/415779/), установка Gitlab не представляет особых сложностей.
 
@@ -77,7 +77,7 @@
 
 Локальная регистрация администратора полезна на случай, если пропадёт связь с LDAP сервером.
 
-[![Вход в Gitlab](https://habrastorage.org/webt/c6/yp/ea/c6ypeavhmm3okm_fwgzrpofdzi0.png)](https://habrastorage.org/webt/c6/yp/ea/c6ypeavhmm3okm_fwgzrpofdzi0.png)
+[![Вход в Gitlab](images/c6ypeavhmm3okm_fwgzrpofdzi0.png)](images/c6ypeavhmm3okm_fwgzrpofdzi0.png)
 
 Это легко делается установкой переменных в конфигурационном файле docker-compose:
 
@@ -107,7 +107,7 @@
   * Токен.
 - Зарегистрировать агент. Адрес и токен он попросит в процессе регистрации.
 
-[![Токен и адрес](![](https://habrastorage.org/webt/ue/cl/gn/ueclgnlcl4qvgnqljidxr9hce2g.png))](![](https://habrastorage.org/webt/ue/cl/gn/ueclgnlcl4qvgnqljidxr9hce2g.png))
+[![Токен и адрес](images/ueclgnlcl4qvgnqljidxr9hce2g.png)](images/ueclgnlcl4qvgnqljidxr9hce2g.png)
 
 Регистрация производится следующей командной:
 
