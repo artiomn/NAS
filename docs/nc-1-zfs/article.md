@@ -1,6 +1,6 @@
 # Установка Debian с корнем на шифрованном ZFS зеркале
 
-![image](https://slytherinluna.files.wordpress.com/2010/04/lolcat-techsupport.jpg)
+![image](images/lolcat-techsupport.jpg)
 
 
 ## Предисловие
