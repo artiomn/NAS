@@ -23,7 +23,7 @@
 
 Чтобы понять, нужно ли строить и что, посмотрите на картинку, взятую из цикла "классических" статей 2013 года на iXBT:
 
-<a href=https://habrastorage.org/webt/rt/1e/kl/rt1eklikzi3_r-9fg0dvg8swo7i.jpeg><img src=https://habrastorage.org/webt/rt/1e/kl/rt1eklikzi3_r-9fg0dvg8swo7i.jpeg width=70% height=70%></a>
+<a href=images/rt1eklikzi3_r-9fg0dvg8swo7i.jpeg><img src=images/rt1eklikzi3_r-9fg0dvg8swo7i.jpeg width=70% height=70%></a>
 
 Эти статьи к прочтению крайне рекомендуются.
 [Первая статья](https://www.ixbt.com/storage/nas-howto-part1.shtml) о выборе железа, [вторая](https://www.ixbt.com/storage/nas-howto-part2.shtml) о программном обеспечении.
