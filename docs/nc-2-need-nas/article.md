@@ -1,7 +1,7 @@
 # Нужно ли собирать NAS?!
 
 
-![image](https://img.tyt.by/n/it/05/c/floppy_5.25.jpg)
+![image](images/floppy_525.jpg)
 
 Как в блогах, так и в журналах есть множество статей о том, как собрать NAS своими руками.
 И с первого взгляда кажется, что при наличии прямых рук, свой NAS по всем пунктам бьёт покупное решение.
@@ -109,7 +109,7 @@
 
 ### [Asustor](https://www.asustor.com/ru/service/nas_selector)
 
-[<img src="https://images-na.ssl-images-amazon.com/images/I/41p0cIiXMlL.jpg"  width=50% height=50%>](https://www.amazon.com/ASUSTOR-AS7008T-3-5GHz-2eSATA-USB3-0/dp/B00TYK14OI)
+[<img src="images/41p0cIiXMlL.jpg"  width=50% height=50%>](https://www.amazon.com/ASUSTOR-AS7008T-3-5GHz-2eSATA-USB3-0/dp/B00TYK14OI)
 
 Я рассматриваю [AS7008T](https://www.asustor.com/ru/product?p_id=23), который считается сервером уровня предприятия (скорее, переходный вариант).
 
@@ -167,7 +167,7 @@ NAS подходит для того, чтобы решить вышеописа
 
 ### [Buffalo](https://www.buffalotech.com/products/category/network-attached-storage)
 
-[<img src="http://www.raidshop.ru/files/2733/2168/586.970.jpg"  width=50% height=50%>](https://www.amazon.com/Buffalo-TeraStation-5810DN-Desktop-Included/dp/B071XDW5BP)
+[<img src="images/586.970.jpg"  width=50% height=50%>](https://www.amazon.com/Buffalo-TeraStation-5810DN-Desktop-Included/dp/B071XDW5BP)
 
 Серьёзный американский NAS от серьёзного американского производителя.
 Интересующая линейка выглядит солидно и солидно же называется: [Terastation](https://www.buffalotech.com/products/terastation-5010-series-desktop).
@@ -202,7 +202,7 @@ NAS подходит для того, чтобы решить вышеописа
 - При замене дисков, [придётся покупать их у Buffalo](https://www.buffalotech.com/products/replacement-hard-drives-for-terastation-5210dn-5410dn-5410rn-3010-series) (см. список поддерживаемых дисков в [спецификации](https://www.buffalotech.com/products/terastation-5010-series-desktop)).
 
 Web GUI:
-![](https://images.macworld.com/images/article/2011/09/buffalo_web_interface-252551.jpg)
+![](images/buffalo_web_interface-252551.jpg)
 
 Ну, и три года гарантии, как полагается.
 
@@ -213,7 +213,7 @@ NAS подходит для того, чтобы решить вышеописа
 
 ### [Cisco](https://www.cisco.com/c/en/us/support/storage-networking/index.html)
 
-[<img src="http://www.raidshop.ru/files/rshop/nss326-large1.jpg" width=60% height=60%>](https://www.amazon.com/Cisco-Network-Attached-Storage-NSS326D00-K9/dp/B003MB62XI)
+[<img src="images/nss326-large1.jpg" width=60% height=60%>](https://www.amazon.com/Cisco-Network-Attached-Storage-NSS326D00-K9/dp/B003MB62XI)
 
 Конечно же, Cisco не мог остаться в стороне.
 
@@ -260,7 +260,7 @@ NAS подходит для того, чтобы решить вышеописа
 
 ### [Drobo](http://www.drobo.com)
 
-[![image](http://drobo.wpengine.netdna-cdn.com/wp-content/uploads/2014/02/5bay-front-header.png)](http://www.drobo.com)
+[![image](images/6f8be398757a7548265813cc25b5384b.png)](http://www.drobo.com)
 
 Drobo представляет собой персональный DAS.
 На постсоветском пространстве и в Европе не популярен. Зато вполне известен в США.
@@ -280,7 +280,7 @@ Drobo представляет собой персональный DAS.
 
 ### [FreeNAS](http://www.freenas.org/freenas-mini/)
 
-[<img src="https://images-na.ssl-images-amazon.com/images/I/91dfT2FtnDL._SL1500_.jpg" width=40% height=40%>](https://www.amazon.com/FreeNAS-Mini-XL-Diskless-Attached/dp/B01CKN76OW)
+[<img src="images/91dfT2FtnDL._SL1500_.jpg" width=40% height=40%>](https://www.amazon.com/FreeNAS-Mini-XL-Diskless-Attached/dp/B01CKN76OW)
 
 Это FreeNAS.
 
@@ -324,7 +324,7 @@ NAS подходит для того, чтобы решить вышеописа
 
 ### [Helwet-Packard ProLiant Microserver](https://www.hpe.com/ru/ru/product-catalog/servers/proliant-servers/pip.hpe-proliant-microserver-gen10-x3216-8gb-u-4lff-nhp-sata-200w-ps-entry-server.1009955178.html)
 
-[<img src=https://images-na.ssl-images-amazon.com/images/I/511gHBncaNL.jpg width=50% height=50%>](https://www.amazon.com/MICRO-SVR-GEN10-X3421-1TB/dp/B0786D93YB)
+[<img src=images/511gHBncaNL.jpg width=50% height=50%>](https://www.amazon.com/MICRO-SVR-GEN10-X3421-1TB/dp/B0786D93YB)
 
 Строго говоря, NAS не является, но может выполнять его функции.
 Я не особенно жалую продукцию HP, но его попросили включить в обзор.
@@ -365,7 +365,7 @@ NAS подходит для того, чтобы решить вышеописа
 С полным списком приложений возможно ознакомиться [на сайте ClearOS](https://www.clearos.com/products/clearos-editions/clearos-7-business/marketplace/)
 
 Web-интерфейс:
-![](https://www.ixbt.com/img/00/02/03/14/images/clearos3_large.png)
+![](images/clearos3_large.png)
 
 Сервер на процессоре AMD и с сетевыми контроллерами Broadcom для меня однозначно - не вариант.
 
@@ -374,7 +374,7 @@ Web-интерфейс:
 
 ### [Iomega/Lenovo](http://lenovoemc.com/)
 
-[<img src="https://images-na.ssl-images-amazon.com/images/I/71vKtc8d9cL._SX522_.jpg" width=50% height=50%>](https://www.amazon.com/Iomega-StorCenter-PX6-300d-diskless-34769/dp/B004Z02XW4)
+[<img src="images/71vKtc8d9cL._SX522_.jpg" width=50% height=50%>](https://www.amazon.com/Iomega-StorCenter-PX6-300d-diskless-34769/dp/B004Z02XW4)
 
 [Тут](https://www.cnet.com/products/iomega-storcenter-px6-300d-network-storage-nas-server-18-tb-series/specs/) возможно посмотреть спецификацию.
 
@@ -415,7 +415,7 @@ Web-интерфейс:
 - Вентиляторы с PWM.
 
 WEB интерфейс симпатичный:
-![](http://www1.fcenter.ru/img/article/hdd/Iomega_StorCenter_px6_300d/182103.png)
+![](images/182103.png)
 
 Когда-то была неплохая система. Сейчас в обзоре этот NAS лишь для истории.
 Хотя, даже с ним возможно решить мои задачи.
@@ -425,7 +425,7 @@ WEB интерфейс симпатичный:
 
 ### [Netberg](http://netberg.ru/products/)
 
-[<img src="https://netberg.ru/wp-content/uploads/2017/03/demos-p100-m3_front_3d.jpg" width=50% height=50%>](http://netberg.ru/products/demos-p200-m2/)
+[<img src="images/demos-p100-m3_front_3d.jpg" width=50% height=50%>](http://netberg.ru/products/demos-p200-m2/)
 
 Весьма своеобразное решение, которое позиционируется не как NAS, а как сервер для малого офиса.
 Они делают его под ключ, так что даже сломанные диски заменят, если что, но самостоятельно лезть руками нельзя, даже чтобы заменить диск: сразу аннулируется гарантия.
@@ -456,7 +456,7 @@ WEB интерфейс симпатичный:
 
 ### [Netgear](https://www.netgear.ru/business/products/storage/readynas/readynas-desktop.aspx#tab-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8)
 
-[<img src="http://www.netgear.ru//images/Products/Storage/ReadyNAS/ReadyNASCBU/ReadyNASDesktop/RN528X/RN528X_right.png" width=50% height=50%>](http://www.netgear.ru/business/products/storage/readynas/RN528X.aspx)
+[<img src="images/RN528X_right.png" width=50% height=50%>](http://www.netgear.ru/business/products/storage/readynas/RN528X.aspx)
 
 **Характеристики:**
 
@@ -483,7 +483,7 @@ WEB интерфейс симпатичный:
 
 ### [Promise technology](https://www.promise.com/Products/Pegasus/Pegasus2/R8)
 
-[<img src="https://images-na.ssl-images-amazon.com/images/I/411KY7Yz6lL.jpg">](https://www.amazon.com/dp/B00NFYJ83S)
+[<img src="images/411KY7Yz6lL.jpg">](https://www.amazon.com/dp/B00NFYJ83S)
 
 Это DAS, но прежде чем я понял это (смотрел на цену), пришлось лезть в его мануал.
 
@@ -512,7 +512,7 @@ WEB интерфейс симпатичный:
 
 ### [QNAP](https://qnap.ru/catalog/nas)
 
-[<img src="https://images-na.ssl-images-amazon.com/images/I/516RhbBt8OL.jpg" width=50% height=50%>](https://www.amazon.com/QNAP-TVS-871-i7-16G-US-8-Bay-3-2GHz-10G-ready/dp/B00S0XRY7Q)
+[<img src="images/516RhbBt8OL.jpg" width=50% height=50%>](https://www.amazon.com/QNAP-TVS-871-i7-16G-US-8-Bay-3-2GHz-10G-ready/dp/B00S0XRY7Q)
 
 О QNAP написано и так много.
 
@@ -573,7 +573,7 @@ WEB интерфейс симпатичный:
 - Есть HDMI выход.
 
 Картинка с внутренним устройством QNAP "с высоты птичьего полёта":
-![Виртуализация в QNAP](https://qnap.ru/sites/qnap.ru/files/products/blocks/x80u/x80u__8.png)
+![Виртуализация в QNAP](images/x80u__8.png)
 
 Очень неплохой NAS по средней цене. Если же что-то не устраивает, есть модели "чуть ниже" и "чуть выше".
 Конечно же с использованием данной системы я могу решить все вышеуказанные задачи.
@@ -583,7 +583,7 @@ WEB интерфейс симпатичный:
 
 ### [QSAN](http://www.qsan.su/goods/nas-serveryi/)
 
-[<img src=http://www.qsan.su/assets/components/phpthumbof/cache/1506671656416414656.4ab1524e200c70f0838101aee47f8120407.png>](http://www.qsan.su/goods/nas-serveryi/xcubenas-xn5008t.html)
+[<img src=images/1506671656416414656.4ab1524e200c70f0838101aee47f8120407.png>](http://www.qsan.su/goods/nas-serveryi/xcubenas-xn5008t.html)
 
 **Характеристики:**
 
@@ -630,7 +630,7 @@ XMirror поддерживает однонаправленное зеркали
 Возможно организовать геораспределённое хранилище.
 
 Web GUI чем-то напоминает QNAP:
-![](http://www.qsan.su/images/nas_XN5004T/8.png)
+![](images/8.png)
 
 Я написал письмо на info@qsan.ru, где попросил указать цену.
 На письмо мне не ответили, но производитель отписал о цене в комментариях к данной статье.
@@ -646,7 +646,7 @@ Web GUI чем-то напоминает QNAP:
 Они интересны прежде всего тем, что они единственные изо всех приведённых поддерживают не только SATA, но и SAS.
 Приведу здесь две разные модели: башню и "лежачий" корпус.
 
-[![Image](http://www.sansdigital.com/uploads/7/8/0/3/78037614/ms28x6g-1_5_orig.jpg)](https://www.amazon.com/Sans-Digital-MobileSTOR-MS28X6G-mini-SAS/dp/B00X7ZCSKU)
+[![Image](images/f659b9d7970aa1dbd66db356e1871d3a.jpg)](https://www.amazon.com/Sans-Digital-MobileSTOR-MS28X6G-mini-SAS/dp/B00X7ZCSKU)
 [На сайте производителя](http://www.sansdigital.com/ms28x6g.html)
 
 **Характеристики:**
@@ -656,7 +656,7 @@ Web GUI чем-то напоминает QNAP:
 
 **$500**
 
-[![Image](http://www.sansdigital.com/uploads/7/8/0/3/78037614/ms8x6-b-3_orig.jpg)](https://www.amazon.com/Sans-Digital-MobileSTOR-MS8X6-ST-SAN-MS8X6/dp/B00DBUM1KS)
+[![Image](images/c647acfb0ef54e0e1c35d81ab021fab5.jpg)](https://www.amazon.com/Sans-Digital-MobileSTOR-MS8X6-ST-SAN-MS8X6/dp/B00DBUM1KS)
 
 **Характеристики:**
 
@@ -681,7 +681,7 @@ Web GUI чем-то напоминает QNAP:
 
 
 #### [DS3617xs на 12 дисков](https://www.synology.com/ru-ru/products/DS3617xs)
-[<img src="https://images-na.ssl-images-amazon.com/images/I/81it6568JfL._SL1500_.jpg" width=50% height=50%>](https://www.amazon.com/Synology-DS3617xs-Station-Diskless-12-bay/dp/B01MSTCXPN)
+[<img src="images/I/81it6568JfL._SL1500_.jpg" width=50% height=50%>](https://www.amazon.com/Synology-DS3617xs-Station-Diskless-12-bay/dp/B01MSTCXPN)
 
 Это мощный сервер, для которого заявлено, что он поддерживает до 4000 пользователей.
 
@@ -732,7 +732,7 @@ Web GUI чем-то напоминает QNAP:
 
 #### [DS1817 на 8 дисков](https://www.synology.com/ru-ru/products/DS1817+)
 
-[<img src="https://images-na.ssl-images-amazon.com/images/I/61US93hDvIL._SL1500_.jpg" width=50% height=50%>](https://www.amazon.com/Synology-Station-Network-Attached-DS2415/dp/B06Y4TJL54)
+[<img src="images/61US93hDvIL._SL1500_.jpg" width=50% height=50%>](https://www.amazon.com/Synology-Station-Network-Attached-DS2415/dp/B06Y4TJL54)
 
 **Характеристики:**
 
@@ -763,7 +763,7 @@ Web GUI чем-то напоминает QNAP:
 ### [Thecus](http://www.thecus.com/product_catalog.php?PROD_TYPE_ID=1)
 
 [На сайте производителя](http://russian.thecus.com/product.php?PROD_ID=72)
-[<img src="https://images-na.ssl-images-amazon.com/images/I/41rQzqeLQIL.jpg">](https://www.amazon.com/Thecus-TopTower-N8850-Server-Enterprise/dp/B0085RURUI)
+[<img src="images/41rQzqeLQIL.jpg">](https://www.amazon.com/Thecus-TopTower-N8850-Server-Enterprise/dp/B0085RURUI)
 
 **Характеристики:**
 
@@ -802,7 +802,7 @@ Web GUI чем-то напоминает QNAP:
 - Есть графика через выход HDMI.
 
 Обобщающая картинка с их сайта:
-![](http://www.thecus.com/upload_new/product/N8850_pic.jpg)
+![](images/n8850_pic.jpg)
 
 Типичный NAS, не очень дорогой, средне производительный. Сенсорный экран - интересное решение. Про виртуализацию и контейнеризацию ничего не написано, но с учётом того, что ОС на основе Linux, с Docker или KVM проблем возникнуть не должно, а железо вполне себе поддержит несколько виртуальных машин.
 Возможно брать, если нравится, мои задачи он вполне решает.
@@ -812,7 +812,7 @@ Web GUI чем-то напоминает QNAP:
 
 ### [Western Digital](https://www.wdc.com/ru-ru/solutions/what-is-network-attached-storage-nas.html)
 
-[<img width=50% height=50% src="https://www.wdc.com/content/dam/wdc/website/products/business/network_attached_storage/my_cloud_expert_series_ex4100/my-cloud-ex4100-network-attached-storage-product-overview.png.imgw.1000.1000.jpg">](https://www.wdc.com/ru-ru/products/network-attached-storage/my-cloud-expert-series-ex4100.html)
+[<img width=50% height=50% src="images/my-cloud-ex4100-network-attached-storage-product-overview.png.imgw.1000.1000.jpg">](https://www.wdc.com/ru-ru/products/network-attached-storage/my-cloud-expert-series-ex4100.html)
 
 Конечно, Western Digital тоже не мог остаться в стороне от систем хранения данных.
 
@@ -838,7 +838,7 @@ Web GUI чем-то напоминает QNAP:
 
 ### [Zyxel](https://www.zyxel.com/ru/ru/products_services/home-personal_cloud_storage.shtml)
 
-[<img src="https://www.zyxel.com/resources_responsive/img/assets/products/nas540/img_nas540_p_380.png">](https://www.zyxel.com/ru/ru/products_services/nas540.shtml)
+[<img src="images/img_nas540_p_380.png">](https://www.zyxel.com/ru/ru/products_services/nas540.shtml)
 
 [Zyxel тоже отметился](https://www.amazon.com/ZyXEL-Personal-AndroidRemote-Streaming-Enterprise/dp/B073C8GN6T).
 
@@ -1284,17 +1284,17 @@ P = 300 + 95 + 18 + 6 + 25 = 459 Вт.
 <spoiler title="Фото под спойлером">
 Внешний вид:
 
-[<img src="https://habrastorage.org/webt/3s/ra/lx/3sralx0nm2-trhhnykr7kr6mlde.jpeg" width=50% height=50% />](https://habrastorage.org/webt/3s/ra/lx/3sralx0nm2-trhhnykr7kr6mlde.jpeg)
+[<img src="images/3sralx0nm2-trhhnykr7kr6mlde.jpeg" width=50% height=50% />](images/3sralx0nm2-trhhnykr7kr6mlde.jpeg)
 
-[<img src="https://habrastorage.org/webt/7c/id/5k/7cid5k-aqzmsj4tfobofqftiuhu.jpeg" width=50% height=50% />](https://habrastorage.org/webt/7c/id/5k/7cid5k-aqzmsj4tfobofqftiuhu.jpeg)
+[<img src="images/7cid5k-aqzmsj4tfobofqftiuhu.jpeg" width=50% height=50% />](images/7cid5k-aqzmsj4tfobofqftiuhu.jpeg)
 
 Вид изнутри, основная дисковая корзина на месте:
-[<img src="https://habrastorage.org/webt/pa/cz/yj/paczyj0_cadxrmywor-9o_t1zgi.jpeg"  width=50% height=50% />](https://habrastorage.org/webt/pa/cz/yj/paczyj0_cadxrmywor-9o_t1zgi.jpeg)
+[<img src="images/paczyj0_cadxrmywor-9o_t1zgi.jpeg"  width=50% height=50% />](images/paczyj0_cadxrmywor-9o_t1zgi.jpeg)
 
 Вид изнутри, дисковые корзины сняты:
-[<img src="https://habrastorage.org/webt/9x/mt/w3/9xmtw3ngvo9y0cbmo2251okqzyi.jpeg"  width=50% height=50% />](https://habrastorage.org/webt/9x/mt/w3/9xmtw3ngvo9y0cbmo2251okqzyi.jpeg)
+[<img src="images/9xmtw3ngvo9y0cbmo2251okqzyi.jpeg"  width=50% height=50% />](images/9xmtw3ngvo9y0cbmo2251okqzyi.jpeg)
 
-[<img src="https://habrastorage.org/webt/64/xs/mu/64xsmuvduqp0ijtzuwazim1qzdq.jpeg"  width=50% height=50% />](https://habrastorage.org/webt/64/xs/mu/64xsmuvduqp0ijtzuwazim1qzdq.jpeg)
+[<img src="images/64xsmuvduqp0ijtzuwazim1qzdq.jpeg"  width=50% height=50% />](images/64xsmuvduqp0ijtzuwazim1qzdq.jpeg)
 </spoiler>
 
 
