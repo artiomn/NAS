@@ -1,6 +1,6 @@
 # Управление файлами в NAS
 
-![](https://habrastorage.org/webt/sx/kt/5f/sxkt5ft6x7e1h0nugugxeastzlq.jpeg)
+![](images/sxkt5ft6x7e1h0nugugxeastzlq.jpeg)
 
 Кажется странным: зачем управлять файлами в файловом хранилище?
 
@@ -27,7 +27,7 @@ NextCloud хорошо подходит для того, чтобы пользо
 
 ### [Sprut.io](https://sprut.io/ru/)
 
-![](https://habrastorage.org/webt/2r/xj/i_/2rxji_siqwayh_d06fn3crlujga.png)
+![](images/2rxji_siqwayh_d06fn3crlujga.png)
 
 Удобный двухпанельный файловый менеджер с продуманным интерфейсов.
 Поддерживает:
@@ -41,7 +41,7 @@ NextCloud хорошо подходит для того, чтобы пользо
 - Горячие клавиши.
 - Работу с внешним FTP.
 
-![](https://habrastorage.org/webt/m7/kb/kh/m7kbkha5h_g9oqyvy09dg-r1gh8.png)
+![](images/m7kbkha5h_g9oqyvy09dg-r1gh8.png)
 
 Подробнее возможно его [изучить в демо-режиме](https://demo.sprut.io:9443/login).
 
@@ -135,7 +135,7 @@ services:
 
 ### [KodExplorer](https://github.com/kalcaddle/KodExplorer)
 
-![](https://habrastorage.org/webt/qi/co/fw/qicofwkuyuwu1gonhczdlp0ylqo.png)
+![](images/qicofwkuyuwu1gonhczdlp0ylqo.png)
 
 Любопытный китайский файловый менеджер, частично повторяющий Проводник Windows.
 Помимо, собственно, файлового менеджера, имеет много различных приложений, таких как калькулятор и плеер.
@@ -157,7 +157,7 @@ services:
 - Видеоплеер.
 - Полноценный редактор кода с подсветкой для более чем 120 языков, регулярными выражениями, автозавершением и проверкой синтаксиса.
 
-![](https://habrastorage.org/webt/x4/tf/4s/x4tf4swvatvrekpu0k1zbklevag.png)
+![](images/x4tf4swvatvrekpu0k1zbklevag.png)
 
 Есть [демо-режим, где возможно его изучить подробнее](http://demo.kodcloud.com/index.php?user/login).
 

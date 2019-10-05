@@ -1,6 +1,6 @@
 # Реализация программной платформы защищённого NAS
 
-![](https://static-media.fxx.com/img/FX_Networks_-_FXX/950/643/Simpsons_10_18_P2.jpg)
+![](images/simpsons_10_18_p2.jpg)
 
 В [предыдущей статье](https://habr.com/post/359344/) было описано проектирование программной платформы NAS.
 Настало время её реализовать.
@@ -226,7 +226,7 @@ zpool add tank0 log mirror /dev/disk/by-id/dm-name-slog0_crypt1 /dev/disk/by-id/
 
 В дальнейшем, при установленном и настроенном OMV, возможно будет создавать пулы через GUI:
 
-[![Создание ZFS пал в OMV WEB GUI](https://habrastorage.org/webt/bu/bc/qj/bubcqjn_frfc3plifb9ehgzxco0.png)](https://habrastorage.org/webt/bu/bc/qj/bubcqjn_frfc3plifb9ehgzxco0.png)
+[![Создание ZFS пал в OMV WEB GUI](images/bubcqjn_frfc3plifb9ehgzxco0.png)](images/bubcqjn_frfc3plifb9ehgzxco0.png)
 
 
 ### Включение импорта пулов и автомонтирования томов при загрузке
@@ -299,7 +299,7 @@ OMV установлен. Он использует своё ядро, и пос
 
 Перезагрузившись, интерфейс OpenMediaVault, будет доступен на порту 80 (зайдите в браузере на NAS по IP-адресу):
 
-[![](https://habrastorage.org/webt/eo/sf/ra/eosfraeilpg2dn770ef5bvr-ple.png)](https://habrastorage.org/webt/eo/sf/ra/eosfraeilpg2dn770ef5bvr-ple.png)
+[![](images/eosfraeilpg2dn770ef5bvr-ple.png)](images/eosfraeilpg2dn770ef5bvr-ple.png)
 
 Логин/пароль по умолчанию: `admin/openmediavault`.
 
@@ -318,7 +318,7 @@ OMV установлен. Он использует своё ядро, и пос
 
 Созданный сертификат будет виден на той же вкладке:
 
-[![Сертификат](https://habrastorage.org/webt/ld/6j/_m/ld6j_mgp4tx6auirzlkfnwium2c.png)](https://habrastorage.org/webt/ld/6j/_m/ld6j_mgp4tx6auirzlkfnwium2c.png)
+[![Сертификат](images/ld6j_mgp4tx6auirzlkfnwium2c.png)](images/ld6j_mgp4tx6auirzlkfnwium2c.png)
 
 После создания сертификата, на вкладке _"Система->Общие настройки"_ надо включить флажок _"Включить SSL/TLS"_.
 
@@ -351,15 +351,15 @@ OMV установлен. Он использует своё ядро, и пос
 - Настройте бондинг для интерфейсов, как показано на рисунке ниже: _"Система->Сеть->Интерфейсы->Добавить->Bond"_.
 - Добавьте нужные правила файрволла на вкладке _"Система->Сеть->Брандмауэр"_. Для начала достаточно доступа на порты 10443, 10080, 443, 80, 22 для SSH и разрешения получения/отправки ICMP.
 
-[![Настройка бондинга](https://habrastorage.org/webt/rb/fi/ab/rbfiabiimceoohildwosfu_egju.png)](https://habrastorage.org/webt/rb/fi/ab/rbfiabiimceoohildwosfu_egju.png)
+[![Настройка бондинга](images/rbfiabiimceoohildwosfu_egju.png)](images/rbfiabiimceoohildwosfu_egju.png)
 
 В результате, должны появиться интерфейсы в бондинге, которые роутер будет видеть, как один интерфейс и присвоит ему один IP адрес:
 
-[![Интерфейсы в бондинге](https://habrastorage.org/webt/ag/wr/y8/agwry8ynozq7dhgov16pzzwmrs0.png)](https://habrastorage.org/webt/ag/wr/y8/agwry8ynozq7dhgov16pzzwmrs0.png)
+[![Интерфейсы в бондинге](images/agwry8ynozq7dhgov16pzzwmrs0.png)](images/agwry8ynozq7dhgov16pzzwmrs0.png)
 
 При желании, возможно дополнительно настроить SSH из WEB GUI:
 
-[![Настройка SSH](https://habrastorage.org/webt/yk/oa/i4/ykoai4l9risd46whpuutbnyi1um.png)](https://habrastorage.org/webt/yk/oa/i4/ykoai4l9risd46whpuutbnyi1um.png)
+[![Настройка SSH](images/ykoai4l9risd46whpuutbnyi1um.png)](images/ykoai4l9risd46whpuutbnyi1um.png)
 
 
 ### Репозитории и модули
@@ -381,7 +381,7 @@ OMV установлен. Он использует своё ядро, и пос
 
 На вкладке _"Система->OMV Extras->Ядро"_ вы можете выбрать нужное вам ядро, в том числе ядро от Proxmox (сам я его не ставил, т.к. мне пока не нужно, потому не рекомендую):
 
-[![](https://habrastorage.org/webt/dq/se/jq/dqsejqlsyn0x6wdbyfeb2kvlwmc.png)](https://habrastorage.org/webt/dq/se/jq/dqsejqlsyn0x6wdbyfeb2kvlwmc.png)
+[![](images/dqsejqlsyn0x6wdbyfeb2kvlwmc.png)](images/dqsejqlsyn0x6wdbyfeb2kvlwmc.png)
 
 Установите необходимые плагины (**жирным** выделены абсолютно необходимые, _курсивом_ - опциональные, которые я не устанавливал):
 <spoiler title="Список плагинов.">
@@ -409,21 +409,21 @@ OMV установлен. Он использует своё ядро, и пос
 
 Все диски, которые есть в системе, должны быть видны OMV. Удостоверьтесь в этом, посмотрев на вкладке _"Хранилище->Диски"_. Если не все диски видны, запустите сканирование.
 
-[![Диски в системе](https://habrastorage.org/webt/ju/i3/rs/jui3rsmgmatghluwuk0rknsqfrq.png)](https://habrastorage.org/webt/ju/i3/rs/jui3rsmgmatghluwuk0rknsqfrq.png)
+[![Диски в системе](images/jui3rsmgmatghluwuk0rknsqfrq.png)](images/jui3rsmgmatghluwuk0rknsqfrq.png)
 
 Там же, на всех HDD надо включить кэширование записи (кликнув на диске из списка и нажав кнопку "Редактировать").
 
 Удостоверьтесь, что видны все шифрованные разделы на вкладке _"Хранилище->Шифрование"_:
 
-[![Шифрованные разделы](https://habrastorage.org/webt/dy/nw/kv/dynwkvuhbnglzeqe3sin_vqda7i.png)](https://habrastorage.org/webt/dy/nw/kv/dynwkvuhbnglzeqe3sin_vqda7i.png)
+[![Шифрованные разделы](images/dynwkvuhbnglzeqe3sin_vqda7i.png)](images/dynwkvuhbnglzeqe3sin_vqda7i.png)
 
 Теперь пора настроить S.M.A.R.T., указанный, как средство повышения надёжности:
 - Перейдите на вкладку _"Хранилище->S.M.A.R.T->Настройки"_. Включите SMART.
 - Там же выберите значения температурных уровней дисков (критический, как правило 60 C, а [оптимальный температурный режим диска](https://www.backblaze.com/blog/hard-drive-temperature-does-it-matter/) 15-45 C).
 - Перейдите на вкладку _"Хранилище->S.M.A.R.T->Устройства"_. Включите мониторинг для каждого диска.
-[![](https://habrastorage.org/webt/83/r-/dc/83r-dcwtrhth5icaketuw1zlis8.png)](https://habrastorage.org/webt/83/r-/dc/83r-dcwtrhth5icaketuw1zlis8.png)
+[![](images/83r-dcwtrhth5icaketuw1zlis8.png)](images/83r-dcwtrhth5icaketuw1zlis8.png)
 - Перейдите на вкладку _"Хранилище->S.M.A.R.T->Запланированные тесты"_. Добавьте для каждого диска короткую самопроверку раз в сутки и длительную самопроверку раз в месяц. Причём так, чтобы периоды самопроверки не пересекались.
-[![](https://habrastorage.org/webt/lh/u8/qf/lhu8qffcenb8utgcekfoy_j0oee.png)](https://habrastorage.org/webt/lh/u8/qf/lhu8qffcenb8utgcekfoy_j0oee.png)
+[![](images/lhu8qffcenb8utgcekfoy_j0oee.png)](images/lhu8qffcenb8utgcekfoy_j0oee.png)
 
 На этом настройку дисков возможно считать оконченной.
 
@@ -445,12 +445,12 @@ zfs create -o compression=off -o utf8only=on -o normalization=formD -p tank0/use
 
 В итоге должна получиться следующая структура каталогов:
 
-[![](https://habrastorage.org/webt/ua/uy/yk/uauyykwki2nmmmpj6pe3-lqxrie.png)](https://habrastorage.org/webt/ua/uy/yk/uauyykwki2nmmmpj6pe3-lqxrie.png)
+[![](images/uauyykwki2nmmmpj6pe3-lqxrie.png)](images/uauyykwki2nmmmpj6pe3-lqxrie.png)
 
 После этого, добавьте созданные ФС, как общие каталоги на странице _"Управление правами доступа->Общие каталоги->Добавить"_.
 Обратите внимание, что параметр _"Устройство"_ равен пути к созданной в ZFS файловой системе, а параметр _"Путь"_ у всех каталогов равен "/".
 
-[![](https://habrastorage.org/webt/xc/9v/da/xc9vdaubqewzyhqfm80k_751fo8.png)](https://habrastorage.org/webt/xc/9v/da/xc9vdaubqewzyhqfm80k_751fo8.png)
+[![](images/xc9vdaubqewzyhqfm80k_751fo8.png)](images/xc9vdaubqewzyhqfm80k_751fo8.png)
 
 
 ### Резервное копирование
@@ -470,14 +470,14 @@ lsblk: /dev/block/0:22: not a block device
 Либо явно указать параметр "Root device" в виде физического устройства, с которого производится загрузка.
 Мне удобнее использовать плагин и делать резервное копирование ОС из интерфейса, вместо того, чтобы городить что-то своё с zfs send, потому я предпочитаю второй вариант.
 
-[![Настройка резервного копирования](https://habrastorage.org/webt/q8/hm/k9/q8hmk9guerk2it7d1xe4tuzvtak.png)](https://habrastorage.org/webt/q8/hm/k9/q8hmk9guerk2it7d1xe4tuzvtak.png)
+[![Настройка резервного копирования](images/q8hmk9guerk2it7d1xe4tuzvtak.png)](images/q8hmk9guerk2it7d1xe4tuzvtak.png)
 
 Чтобы резервное копирование работало, сначала создайте через ZFS файловую систему `tank0/apps/backup`, затем в меню _"Система->Резервирование"_ кликните "+" в поле параметра _"Общая папка"_ и добавьте созданное устройство, как целевое, а поле _"Путь"_ установите в "/".
 
 С zfs-auto-snapshot тоже есть проблемы. Если её не настроить, она будет делать снимки каждый час, каждый день, каждую неделю, каждый месяц в течение года.
 В итоге получится то, что на скриншоте:
 
-[![Много спама от zfs-auto-snapshot](https://habrastorage.org/webt/af/_j/gw/af_jgw_evodbuhm07iqwpjh-he8.png)](https://habrastorage.org/webt/af/_j/gw/af_jgw_evodbuhm07iqwpjh-he8.png)
+[![Много спама от zfs-auto-snapshot](images/af_jgw_evodbuhm07iqwpjh-he8.png)](images/af_jgw_evodbuhm07iqwpjh-he8.png)
 
 Если вы уже на это натолкнулись, выполните следующий код для удаления автоматических снимков:
 
@@ -508,7 +508,7 @@ zfs list -t snapshot -o name -S creation | grep "@zfs-auto-snap" | tail -n +1500
 
 Пример настройки для Yandex показан на скриншоте:
 
-[![E-mail уведомления](https://habrastorage.org/webt/4j/pb/2m/4jpb2mwgystnu_3yc9vf9l16soo.png)](https://habrastorage.org/webt/4j/pb/2m/4jpb2mwgystnu_3yc9vf9l16soo.png)
+[![E-mail уведомления](images/4jpb2mwgystnu_3yc9vf9l16soo.png)](images/4jpb2mwgystnu_3yc9vf9l16soo.png)
 
 
 ## Настройка сети вне NAS
@@ -523,7 +523,7 @@ zfs list -t snapshot -o name -S creation | grep "@zfs-auto-snap" | tail -n +1500
 
 В качестве роутера у меня [Mikrotik RouterBoard](https://mikrotik.com/product/RB951Ui-2HnD), похожий на тот, что на картинке ниже.
 
-[![Mikrotik Routerboard](https://habrastorage.org/webt/ni/mv/a8/nimva8ju1vg2doqcnwd7s0_xcmw.jpeg)](https://habrastorage.org/webt/ni/mv/a8/nimva8ju1vg2doqcnwd7s0_xcmw.jpeg)
+[![Mikrotik Routerboard](images/nimva8ju1vg2doqcnwd7s0_xcmw.jpeg)](images/nimva8ju1vg2doqcnwd7s0_xcmw.jpeg)
 
 На роутере требуется сделать три вещи:
 
@@ -531,7 +531,7 @@ zfs list -t snapshot -o name -S creation | grep "@zfs-auto-snap" | tail -n +1500
 - Настроить DNS сервер так, чтобы он для имени "nas", а также имён, оканчивающихся на ".nas" и ".NAS.cloudns.cc" (где "NAS" - зона на ClouDNS или подобном сервисе) отдавал IP системы. Где это сделать в RouterOS, показано на скриншоте ниже. В моём случае, это реализовано путём сопоставления имени с регулярным выражением: "`^.*\.nas$|^nas$|^.*\.NAS.cloudns.cc$`"
 - Настроить проброс портов. В RouterOS это делается на вкладке _"IP->Firewall"_, далее останавливаться я на этом не буду.
 
-[![Настройка DNS в RouterOS](https://habrastorage.org/webt/wu/2d/3n/wu2d3ng2xlqaleslb__9a72vtpo.png)](https://habrastorage.org/webt/wu/2d/3n/wu2d3ng2xlqaleslb__9a72vtpo.png)
+[![Настройка DNS в RouterOS](images/wu2d3ng2xlqaleslb__9a72vtpo.png)](images/wu2d3ng2xlqaleslb__9a72vtpo.png)
 
 
 ### ClouDNS
@@ -540,7 +540,7 @@ zfs list -t snapshot -o name -S creation | grep "@zfs-auto-snap" | tail -n +1500
 
 Во-первых, нужно создать необходимые зоны (зона с именем NAS, подчёркнутая на скриншоте красным - это то, что вы должны создать, с другим названием, конечно).
 
-[![Создание зоны в ClouDNS](https://habrastorage.org/webt/wj/3k/0u/wj3k0ueaouj9tdslhubqtdz49os.png)](https://habrastorage.org/webt/wj/3k/0u/wj3k0ueaouj9tdslhubqtdz49os.png)
+[![Создание зоны в ClouDNS](images/wj3k0ueaouj9tdslhubqtdz49os.png)](images/wj3k0ueaouj9tdslhubqtdz49os.png)
 
 Во-вторых, в этой зоне вы должны прописать следующие [A-записи](http://www.wikireality.ru/wiki/A-запись):
 
@@ -552,17 +552,17 @@ zfs list -t snapshot -o name -S creation | grep "@zfs-auto-snap" | tail -n +1500
 Остальные доменные имена будут добавляться по мере добавления служб.
 Кликайте на зону, далее _"Add new record"_, выбираете A-тип, вводите имя зоны и IP адрес роутера, за которым стоит NAS.
 
-[![Добавленные A-записи](https://habrastorage.org/webt/ym/9o/s2/ym9os2upazemboftovtmasp3h1u.png)](https://habrastorage.org/webt/ym/9o/s2/ym9os2upazemboftovtmasp3h1u.png)
+[![Добавленные A-записи](images/ym9os2upazemboftovtmasp3h1u.png)](images/ym9os2upazemboftovtmasp3h1u.png)
 
 Во-вторых, требуется получить доступ к API. В ClouDNS он платный, так что предварительно надо его оплатить. В других сервисах он бесплатный. Если знаете, что лучше, и это поддерживается [Lexicon](https://github.com/AnalogJ/lexicon), напишите пожалуйста в комментариях.
 
 Получив доступ к API, туда надо добавить нового пользователя API.
 
-[![Добавление пользователя API ClouDNS](https://habrastorage.org/webt/ah/tc/rp/ahtcrpidjt3gvlnuc-udwjj0no8.png)](https://habrastorage.org/webt/ah/tc/rp/ahtcrpidjt3gvlnuc-udwjj0no8.png)
+[![Добавление пользователя API ClouDNS](images/ahtcrpidjt3gvlnuc-udwjj0no8.png)](images/ahtcrpidjt3gvlnuc-udwjj0no8.png)
 
 В поле _"IP address"_ надо вписать IP роутера: это адрес, с которого будет доступен API. После того, как пользователь будет добавлен, вы сможете использовать API, авторизовавшись по **auth-id** и **auth-password**. Их надо будет передавать в Lexicon, как параметры.
 
-[![](https://habrastorage.org/webt/z_/6k/yv/z_6kyvkyj9gqlbi_s-dudfoirzs.png)](https://habrastorage.org/webt/z_/6k/yv/z_6kyvkyj9gqlbi_s-dudfoirzs.png)
+[![](images/z_6kyvkyj9gqlbi_s-dudfoirzs.png)](images/z_6kyvkyj9gqlbi_s-dudfoirzs.png)
 
 На этом настройка ClouDNS закончена.
 
@@ -591,7 +591,7 @@ zfs create -p /tank0/docker/services
 Т.о., через некоторое время там скопится достаточно много мусора и будет не особенно удобно 
 с ним разбираться. Пример на скриншоте.
 
-[![](https://habrastorage.org/webt/wn/by/ec/wnbyecyxrlrsf0cssx78zqmoxdu.png)](https://habrastorage.org/webt/wn/by/ec/wnbyecyxrlrsf0cssx78zqmoxdu.png)
+[![](images/wnbyecyxrlrsf0cssx78zqmoxdu.png)](images/wnbyecyxrlrsf0cssx78zqmoxdu.png)
 
 Чтобы этого избежать, надо локализовать каталог с данными на отдельной файловой системе.
 Изменить расположение базового пути докера не сложно, это возможно сделать даже через GUI плагина, но тогда возникнет проблема: [пулы перестанут монтироваться при загрузке](https://github.com/OpenMediaVault-Plugin-Developers/openmediavault-zfs/issues/42#issuecomment-378410324), т.к. докер создаст свои каталоги в точке монтирования, и она будет не пуста.
@@ -1197,7 +1197,7 @@ nginx-local_1  | 172.22.0.5 - - [29/Jul/2018:15:32:02 +0000] "GET /favicon.ico H
 
 А браузер покажет следующую страницу:
 
-[![Запущенный Nginx](https://habrastorage.org/webt/wj/-v/q3/wj-vq3xwns34rsn_tr8zvycwiei.png)](https://habrastorage.org/webt/wj/-v/q3/wj-vq3xwns34rsn_tr8zvycwiei.png)
+[![Запущенный Nginx](images/wj-vq3xwns34rsn_tr8zvycwiei.png)](images/wj-vq3xwns34rsn_tr8zvycwiei.png)
 
 Если, в итоге, у вас появилась страница, как на скриншоте выше, могу вас поздравить: всё настроено и работает правильно.
 
@@ -1527,7 +1527,7 @@ LDAP плагин вы уже должны были установить.
 
 Всё показано на скриншоте:
 
-[![Настройка OMV для работы с LDAP](https://habrastorage.org/webt/0e/fq/yp/0efqypb4eevkfvm1dx5hccpxcae.png)](https://habrastorage.org/webt/0e/fq/yp/0efqypb4eevkfvm1dx5hccpxcae.png)
+[![Настройка OMV для работы с LDAP](images/0efqypb4eevkfvm1dx5hccpxcae.png)](images/0efqypb4eevkfvm1dx5hccpxcae.png)
 
 
 Взаимодействие с источником питания
@@ -1568,7 +1568,7 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 _"Режим отключения"_ надо установить в "низкий заряд батареи".
 Должно получиться примерно так, как показано на скриншоте:
 
-[![Настройка ИБП](https://habrastorage.org/webt/0v/1e/5c/0v1e5ceg5axff7qac7gnqqlv5dc.png)](https://habrastorage.org/webt/0v/1e/5c/0v1e5ceg5axff7qac7gnqqlv5dc.png)
+[![Настройка ИБП](images/0v1e5ceg5axff7qac7gnqqlv5dc.png)](images/0v1e5ceg5axff7qac7gnqqlv5dc.png)
 
 Выключите ИБП и снова включите. Если были настроены уведомления, вам на почту придёт письмо о потере питания.
 На этом настройка ИБП окончена.
@@ -1584,25 +1584,25 @@ _"Режим отключения"_ надо установить в "низки
 
 Доступно управление сетями из WEB-интерфейса, причём в некотором плане это более удобно, чем через консоль:
 
-[![](https://habrastorage.org/webt/tb/p3/ja/tbp3jabundd-ifinj76eimw-me0.png)](https://habrastorage.org/webt/tb/p3/ja/tbp3jabundd-ifinj76eimw-me0.png)
+[![](images/tbp3jabundd-ifinj76eimw-me0.png)](images/tbp3jabundd-ifinj76eimw-me0.png)
 
 Для Docker тоже есть весьма понятный WEB-интерфейс:
 
-[![](https://habrastorage.org/webt/ol/1o/h_/ol1oh_koe2adncdkhh9qozsufkm.png)](https://habrastorage.org/webt/ol/1o/h_/ol1oh_koe2adncdkhh9qozsufkm.png)
+[![](images/ol1oh_koe2adncdkhh9qozsufkm.png)](images/ol1oh_koe2adncdkhh9qozsufkm.png)
 
 Кроме того, OMV может рисовать красивые графики.
 
 График использования сети:
 
-[![График использования сети](https://habrastorage.org/webt/fq/n7/v2/fqn7v20f3vq1ekj7ygcg1jbv2cu.png)](https://habrastorage.org/webt/fq/n7/v2/fqn7v20f3vq1ekj7ygcg1jbv2cu.png)
+[![График использования сети](images/fqn7v20f3vq1ekj7ygcg1jbv2cu.png)](images/fqn7v20f3vq1ekj7ygcg1jbv2cu.png)
 
 График использования памяти:
 
-[![График использования памяти](https://habrastorage.org/webt/52/k4/3e/52k43eckcekf7bxfxqmsbnv4hlm.png)](https://habrastorage.org/webt/52/k4/3e/52k43eckcekf7bxfxqmsbnv4hlm.png)
+[![График использования памяти](images/52k43eckcekf7bxfxqmsbnv4hlm.png)](images/52k43eckcekf7bxfxqmsbnv4hlm.png)
 
 График использования CPU:
 
-[![График использования CPU](https://habrastorage.org/webt/qn/e8/ir/qne8ir6ndfbl17zyvzzl5vyexs0.png)](https://habrastorage.org/webt/qn/e8/ir/qne8ir6ndfbl17zyvzzl5vyexs0.png)
+[![График использования CPU](images/qne8ir6ndfbl17zyvzzl5vyexs0.png)](images/qne8ir6ndfbl17zyvzzl5vyexs0.png)
 
 
 ## Нереализованное
@@ -1615,4 +1615,4 @@ _"Режим отключения"_ надо установить в "низки
 На этом всё.
 С Богом!
 
-![](https://habrastorage.org/webt/n0/dy/xy/n0dyxyaz2tzyp5q1vvdskj1fr9c.jpeg)
+![](images/n0dyxyaz2tzyp5q1vvdskj1fr9c.jpeg)

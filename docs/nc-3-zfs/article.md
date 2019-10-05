@@ -1,6 +1,6 @@
 # /boot на ZFS зеркале
 
-![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEv3P-9688WEqvC8Sy9PNECbZcPsw5edLCQWc-XEl3Txi2purP)
+![](images/imagesqtbnand9gctev3p-9688weqvc8sy9pnecbzcpsw5edlcqwc-xel3txi2purp.jpeg)
 
 Небольшая заметка, в дополнение к [статье о корневом разделе на ZFS](https://habr.com/post/351932/).
 <cut />

@@ -1,6 +1,6 @@
 # Дополнительные программные средства безопасности для NAS
 
-![](https://habrastorage.org/webt/39/ch/xl/39chxldtklziggqygx3wgmom0ky.png)
+![](images/39chxldtklziggqygx3wgmom0ky.png)
 
 Цикл статей назван ["Построение защищённого NAS"](https://habr.com/post/359346/). Поэтому в данной статье будет рассматриваться повышение уровня защищённости. Также, будут описаны и те инструменты, которые я не использовал, но возможно применить.
 
@@ -24,7 +24,7 @@
 
 **Это была минутка рекламы.**
 
-![](https://habrastorage.org/webt/w4/ye/cz/w4yeczwns0wzroeq-ufxttf9yhm.jpeg)
+![](images/w4yeczwns0wzroeq-ufxttf9yhm.jpeg)
 
 Так строят модель серьёзные компании. И если это интересно, я могу как-нибудь описать в отдельной статье.
 
@@ -261,7 +261,7 @@ $ rm ~/ldap_backup.tgz
 - Группа создаётся из шаблона "Default". Это **не POSIX** группа, а группа имён.
 - Соответственно, группа имеет атрибут `objectClass`, включающий значение `groupOfUniqueNames`.
 
-[![Добавление группы в phpLDAPAdmin](https://habrastorage.org/webt/tx/i8/yj/txi8yjxxtbvlzynr1yttkn-ddgc.png)](https://habrastorage.org/webt/tx/i8/yj/txi8yjxxtbvlzynr1yttkn-ddgc.png)
+[![Добавление группы в phpLDAPAdmin](images/txi8yjxxtbvlzynr1yttkn-ddgc.png)](images/txi8yjxxtbvlzynr1yttkn-ddgc.png)
 
 
 ## Docker
@@ -505,7 +505,7 @@ Final times for host: srtt: 22 rttvar: 1  to: 100000
 
 Файрволл я настраиваю через Web GUI OpenMediaVault, что и вам рекомендую.
 
-[![](https://habrastorage.org/webt/cv/a9/eo/cva9eoxcbu4h8ut8cwrwczkjop8.png)](https://habrastorage.org/webt/cv/a9/eo/cva9eoxcbu4h8ut8cwrwczkjop8.png)
+[![](images/cva9eoxcbu4h8ut8cwrwczkjop8.png)](images/cva9eoxcbu4h8ut8cwrwczkjop8.png)
 
 Открывайте необходимые порты, такие  как 443 и 22, остальные - по вкусу. Также, желательно включить протоколирование отброшенных пакетов.
 
@@ -990,7 +990,7 @@ Failed Count:  137
 
 ### [AppArmor](https://gitlab.com/apparmor/apparmor/wikis/home/)
 
-![](https://habrastorage.org/webt/p2/yt/br/p2ytbr0l4cq_ujt9sh_njrh1t7k.jpeg)
+![](images/p2ytbr0l4cq_ujt9sh_njrh1t7k.jpeg)
 
 Система мандатного контроля доступа на основе путей к файлам.
 
@@ -1036,7 +1036,7 @@ profile ping /{usr/,}bin/ping flags=(complain) {
 
 ### [SELinux](http://selinuxproject.org/page/Main_Page)
 
-[![Архитектура SELinux](https://habrastorage.org/webt/uk/8e/_4/uk8e_4yzmie_mnhkeak2sxxztem.png)](https://habrastorage.org/webt/uk/8e/_4/uk8e_4yzmie_mnhkeak2sxxztem.png)
+[![Архитектура SELinux](images/uk8e_4yzmie_mnhkeak2sxxztem.png)](images/uk8e_4yzmie_mnhkeak2sxxztem.png)
 
 Система мандатного контроля доступа.
 Подарок от [NSA](https://www.nsa.gov/), про работу с которым в Debian описано в [официальном руководстве](https://wiki.debian.org/SELinux).

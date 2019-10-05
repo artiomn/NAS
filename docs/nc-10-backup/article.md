@@ -1,6 +1,6 @@
 # Система резервного копирования
 
-![](https://habrastorage.org/webt/in/pk/uh/inpkuhyjnf8c-efshdvkj_edp7m.jpeg)
+![](images/inpkuhyjnf8c-efshdvkj_edp7m.jpeg)
 
 Эта статья - часть [цикла о построении NAS](https://habr.com/post/359346/), и написана под конкретный вид системы.
 
@@ -40,7 +40,7 @@
 
 ## Принципы резервного копирования
 
-![](https://habrastorage.org/webt/t-/pe/i4/t-pei4njc4jilp-l0unqmcpanho.jpeg)
+![](images/t-pei4njc4jilp-l0unqmcpanho.jpeg)
 
 Стоит понимать, что хотя я описываю здесь частный случай резервного копирования, который заточен под нужды маленькой сети, принципы, наблюдения и закономерности везде общие.
 В простых случаях некоторыми из них возможно пренебречь, но знать желательно.
@@ -341,7 +341,7 @@ log=C:\BACKUP.LOG _–_ путь и имя создаваемого файла �
 
 ### Процедура восстановления
 
-![](https://habrastorage.org/webt/qu/i3/il/qui3ilw9nczsm17-w7d1dwcalhy.jpeg)
+![](images/qui3ilw9nczsm17-w7d1dwcalhy.jpeg)
 
 - Для пользовательских данных производится имеющим доступ к СРК, по запросу.
 - Для пользовательских данных выполняется штатными средствами ПО, которое осуществляет резервное копирование.
@@ -409,7 +409,7 @@ Mikrotik вполне меня устраивает, а настройки в Ro
 
 ### [Bareos](https://www.bareos.org/en/)
 
-[![](https://habrastorage.org/webt/kp/pa/7t/kppa7tts84fep2t5rfk52poagx4.png)](https://habrastorage.org/webt/kp/pa/7t/kppa7tts84fep2t5rfk52poagx4.png)
+[![](images/kppa7tts84fep2t5rfk52poagx4.png)](images/kppa7tts84fep2t5rfk52poagx4.png)
 
 BareOS (Backup Archiving Recovery Open Sourced) - форк Bacula с 2010 года.
 
@@ -437,7 +437,7 @@ BareOS (Backup Archiving Recovery Open Sourced) - форк Bacula с 2010 год
 
 ### [BackupPC](http://backuppc.sourceforge.net)
 
-[![](https://habrastorage.org/webt/zi/dv/e4/zidve44-5zrteeqdkiosyigkvwu.png)](https://habrastorage.org/webt/zi/dv/e4/zidve44-5zrteeqdkiosyigkvwu.png)
+[![](images/zidve44-5zrteeqdkiosyigkvwu.png)](images/zidve44-5zrteeqdkiosyigkvwu.png)
 
 Безагентная система резервного копирования.
 
@@ -465,7 +465,7 @@ BareOS (Backup Archiving Recovery Open Sourced) - форк Bacula с 2010 год
 
 ### [UrBackup](https://www.urbackup.org)
 
-[![](https://habrastorage.org/webt/u1/lo/ed/u1loed_wq1-njxjlq1f7ths2kso.png)](https://habrastorage.org/webt/u1/lo/ed/u1loed_wq1-njxjlq1f7ths2kso.png)
+[![](images/u1loed_wq1-njxjlq1f7ths2kso.png)](images/u1loed_wq1-njxjlq1f7ths2kso.png)
 
 Клиент-серверная система резервного копирования с агентом.
 
@@ -527,7 +527,7 @@ BareOS (Backup Archiving Recovery Open Sourced) - форк Bacula с 2010 год
 
 ### [BorgBackup](https://www.borgbackup.org/)
 
-[![](https://habrastorage.org/webt/a_/qp/rh/a_qprhceevkysy_nk_xg20os5x0.jpeg)](https://habrastorage.org/webt/a_/qp/rh/a_qprhceevkysy_nk_xg20os5x0.jpeg)
+[![](images/a_qprhceevkysy_nk_xg20os5x0.jpeg)](images/a_qprhceevkysy_nk_xg20os5x0.jpeg)
 
 Дедуплицирующая программа для резервного копирования.
 
@@ -568,7 +568,7 @@ BareOS (Backup Archiving Recovery Open Sourced) - форк Bacula с 2010 год
 
 ### [Box Backup](https://www.boxbackup.org/)
 
-[![](https://habrastorage.org/webt/4e/o-/ta/4eo-taslxisuzzofmwhmmjtjxmk.png)](https://habrastorage.org/webt/4e/o-/ta/4eo-taslxisuzzofmwhmmjtjxmk.png)
+[![](images/4eo-taslxisuzzofmwhmmjtjxmk.png)](images/4eo-taslxisuzzofmwhmmjtjxmk.png)
 
 Автоматическая онлайновая система с открытым исходным кодом.
 Вот [более подробное описание](https://habrahabr.ru/post/8156/).
@@ -677,11 +677,11 @@ services:
 
 Основные настройки сервера:
 
-[![](https://habrastorage.org/webt/03/xx/3d/03xx3dgvb6xtswdsfejbdakwwkg.png)](https://habrastorage.org/webt/03/xx/3d/03xx3dgvb6xtswdsfejbdakwwkg.png)
+[![](images/03xx3dgvb6xtswdsfejbdakwwkg.png)](images/03xx3dgvb6xtswdsfejbdakwwkg.png)
 
 Добавление администратора:
 
-[![Добавление администратора](https://habrastorage.org/webt/um/0u/1h/um0u1h_i9ikrjhpgt-ppfyjubzs.png)](https://habrastorage.org/webt/um/0u/1h/um0u1h_i9ikrjhpgt-ppfyjubzs.png)
+[![Добавление администратора](images/um0u1h_i9ikrjhpgt-ppfyjubzs.png)](images/um0u1h_i9ikrjhpgt-ppfyjubzs.png)
 
 LDAP настроить мне не удалось, но это не особенно критично: сервер имеет только одного администратора, сами же агенты имеют доступ только к своим данным.
 
@@ -693,16 +693,16 @@ ou=users,dc=nas,dc=nas?memberOf,objectClass?sub?(&(memberOf=cn=users_backup,ou=g
 
 Если у кого-то получится, жду рекомендаций в комментариях.
 
-[![Настройка LDAP](https://habrastorage.org/webt/az/wb/0q/azwb0qxoafmccqrzs1iyrchpi2q.png)](https://habrastorage.org/webt/az/wb/0q/azwb0qxoafmccqrzs1iyrchpi2q.png)
+[![Настройка LDAP](images/azwb0qxoafmccqrzs1iyrchpi2q.png)](images/azwb0qxoafmccqrzs1iyrchpi2q.png)
 
 В системе есть одна группа, в которой содержатся настройки по умолчанию, и куда попадают все созданные вновь клиенты.
 Но я бы рекомендовал добавить отдельные группы, чтобы проще было манипулировать настройками:
 
-[![](https://habrastorage.org/webt/xi/cx/vn/xicxvnphcifc4z8ocwwrem8hqei.png)](https://habrastorage.org/webt/xi/cx/vn/xicxvnphcifc4z8ocwwrem8hqei.png)
+[![](images/xicxvnphcifc4z8ocwwrem8hqei.png)](images/xicxvnphcifc4z8ocwwrem8hqei.png)
 
 Включение Интернет-режима:
 
-[![](https://habrastorage.org/webt/sp/vk/uc/spvkuc8fxj9-vxldm4k9qmb7c6o.png)](https://habrastorage.org/webt/sp/vk/uc/spvkuc8fxj9-vxldm4k9qmb7c6o.png)
+[![](images/spvkuc8fxj9-vxldm4k9qmb7c6o.png)](images/spvkuc8fxj9-vxldm4k9qmb7c6o.png)
 
 Обратите внимание, что тут задаётся имя сервера, которое будет прописано в архиве с преднастроенным агентом.
 
@@ -731,7 +731,7 @@ ou=users,dc=nas,dc=nas?memberOf,objectClass?sub?(&(memberOf=cn=users_backup,ou=g
 
 Агент в UrBackup преднастроенный, т.е. скачивать его надо с вашего сервера, и доступен он будет доступен на странице вашего сервера после добавления клиента:
 
-[![Страница загрузки агента](https://habrastorage.org/webt/-k/e3/k4/-ke3k4w2aornwpmehottv2shgxk.png)](https://habrastorage.org/webt/-k/e3/k4/-ke3k4w2aornwpmehottv2shgxk.png)
+[![Страница загрузки агента](images/-ke3k4w2aornwpmehottv2shgxk.png)](images/-ke3k4w2aornwpmehottv2shgxk.png)
 
 Именно отсюда его и надо качать.
 
@@ -766,7 +766,7 @@ TF=`mktemp` && wget "https://NAS.system.cloudns.cc/x?a=download_client&lang=ru&c
 
 После того, как всё готово и установлено, выбрав пункт, "Полный файловый бэкап", будет видно, что индексирование пошло:
 
-[![](https://habrastorage.org/webt/qr/np/ts/qrnptsrut7fv4rumu7rde8fwypm.png)](https://habrastorage.org/webt/qr/np/ts/qrnptsrut7fv4rumu7rde8fwypm.png)
+[![](images/qrnptsrut7fv4rumu7rde8fwypm.png)](images/qrnptsrut7fv4rumu7rde8fwypm.png)
 
 На клиенте оно должно выглядеть примерно так:
 
@@ -889,7 +889,7 @@ DPkg::Post-Invoke {"test -x /usr/local/bin/urbackupclientctl && /usr/local/bin/u
 
 ## Облачные сервисы для резервирования
 
-![](https://habrastorage.org/webt/ms/no/j4/msnoj4lqhhfm-keodwyhhdoaudm.jpeg)
+![](images/msnoj4lqhhfm-keodwyhhdoaudm.jpeg)
 
 Статья про резервное копирование получилась достаточно объёмной.
 А как мне видно из практики, объёмные и подробные статьи тут мало кому интересны, да и усилия от публикации на Хабре себя не оправдывают.

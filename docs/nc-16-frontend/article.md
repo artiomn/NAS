@@ -1,6 +1,6 @@
 # Организаторы
 
-![](https://habrastorage.org/webt/gu/zl/uw/guzluwtmagp2ejr-rd_p7w8ellu.jpeg)
+![](images/guzluwtmagp2ejr-rd_p7w8ellu.jpeg)
 
 <cut/>
 В organizr и любом органайзере, использующем iframe, ничего не запустится из-за заголовка  X-Frame-Options   SAMEORIGIN;
@@ -11,4 +11,4 @@ https://habr.com/post/317720/
 
 Не будет работать видеочат в облаке.
 
-[![Organizr](https://habrastorage.org/webt/s5/4l/p1/s54lp1yqcohb0oyzsuqafxk8cyk.png)](https://habrastorage.org/webt/s5/4l/p1/s54lp1yqcohb0oyzsuqafxk8cyk.png)
+[![Organizr](images/s54lp1yqcohb0oyzsuqafxk8cyk.png)](images/s54lp1yqcohb0oyzsuqafxk8cyk.png)

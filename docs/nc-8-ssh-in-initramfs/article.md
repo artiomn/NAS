@@ -1,6 +1,6 @@
 # Bonding и SSH-сервер в initramfs
 
-![](https://habrastorage.org/webt/mc/mz/-h/mcmz-h3bsxctbh1ka8wxdtdnvqs.png)
+![](images/mcmz-h3bsxctbh1ka8wxdtdnvqs.png)
 
 Всякая система является компромиссом между безопасностью и удобством использования.
 
@@ -12,7 +12,7 @@
 
 Благодаря [подсказке](https://habr.com/post/359344/#comment_18916925) от @ValdikSS, эту проблема была решена. Но...
 
-![](https://habrastorage.org/webt/l0/xu/c3/l0xuc38iobnzstjrcx204y9opeg.jpeg)
+![](images/l0xuc38iobnzstjrcx204y9opeg.jpeg)
 
 Мне был нужен бондинг интерфейсов и удалённая разблокировка по SSH. А мануала, по которому возможно сделать сразу так, чтобы работало как мне надо, я не нашёл.
 

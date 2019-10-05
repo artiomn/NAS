@@ -1,6 +1,6 @@
 # Список статей и литературы про NAS
 
-![](https://habrastorage.org/webt/sr/0y/hm/sr0yhmtnyqleva0x_wttzsmxvco.jpeg)
+![](images/sr0yhmtnyqleva0x_wttzsmxvco.jpeg)
 
 В рамках [цикла статей по построению NAS, либо домашнего сервера](https://habr.com/post/359346/), по просьбам [пользователей](https://habr.com/post/359346/#comment_18916421) я погуглил за вас и сделал небольшой обзор информационных источников.
 

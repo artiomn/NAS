@@ -1,6 +1,6 @@
 # Цикл статей: построение защищённого NAS, либо домашнего мини-сервера
 
-![](https://habrastorage.org/webt/5s/np/2a/5snp2asrc-dlhjefcfawsaurfqo.png)
+![](images/5snp2asrc-dlhjefcfawsaurfqo.png)
 
 **Статьи цикла**:
 

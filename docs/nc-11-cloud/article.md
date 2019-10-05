@@ -1,6 +1,6 @@
 # Персональное облако
 
-![](https://habrastorage.org/webt/pp/rh/gv/pprhgvtoydiwu1ks2fpnobjszqm.png)
+![](images/pprhgvtoydiwu1ks2fpnobjszqm.png)
 
 Облачное хранилище позволяет не только хранить данные, но и обеспечивать совместную работу с ними [в NAS](https://habr.com/post/359346/).
 
@@ -14,7 +14,7 @@
 <spoiler title="Реализации облачных сервисов.">
 ### [OwnCloud](https://owncloud.org/)
 
-[![](https://habrastorage.org/webt/fj/be/gx/fjbegxfckhsx7ww4y9b8_m10jsm.png)](https://habrastorage.org/webt/fj/be/gx/fjbegxfckhsx7ww4y9b8_m10jsm.png)
+[![](images/fjbegxfckhsx7ww4y9b8_m10jsm.png)](images/fjbegxfckhsx7ww4y9b8_m10jsm.png)
 
 Реализован на PHP/Javascript.
 
@@ -38,7 +38,7 @@
 
 ### [NextCloud](https://nextcloud.org/)
 
-[![](https://habrastorage.org/webt/62/cb/lo/62cbloe--f5eaxvejke31jqk-r4.png)](https://habrastorage.org/webt/62/cb/lo/62cbloe--f5eaxvejke31jqk-r4.png)
+[![](images/62cbloe-f5eaxvejke31jqk-r4.png)](images/62cbloe-f5eaxvejke31jqk-r4.png)
 
 Форк OwnCloud. Реализован на PHP/Javascript.
 
@@ -88,7 +88,7 @@
 
 ### [Seafile](https://www.seafile.com)
 
-[![](https://habrastorage.org/webt/gk/rb/op/gkrbopkni_o44lqncmhdeuqe2fa.png)](https://habrastorage.org/webt/gk/rb/op/gkrbopkni_o44lqncmhdeuqe2fa.png)
+[![](images/gkrbopkni_o44lqncmhdeuqe2fa.png)](images/gkrbopkni_o44lqncmhdeuqe2fa.png)
 
 Реализован на C/Javascript.
 
@@ -127,7 +127,7 @@
 
 ### [Pydio](https://pydio.com)
 
-[![](https://habrastorage.org/webt/v7/7n/he/v77nhe_y1o7wq8lkg7e1dhtp1ms.jpeg)](https://habrastorage.org/webt/v7/7n/he/v77nhe_y1o7wq8lkg7e1dhtp1ms.jpeg)
+[![](images/v77nhe_y1o7wq8lkg7e1dhtp1ms.jpeg)](images/v77nhe_y1o7wq8lkg7e1dhtp1ms.jpeg)
 
 Реализован на PHP/Javascript.
 
@@ -145,7 +145,7 @@
 
 ### [ProjectSend](https://www.projectsend.org)
 
-[![](https://habrastorage.org/webt/61/1k/uc/611kuc8ohfjs4ym7kajncgufowo.png)](https://habrastorage.org/webt/61/1k/uc/611kuc8ohfjs4ym7kajncgufowo.png)
+[![](images/611kuc8ohfjs4ym7kajncgufowo.png)](images/611kuc8ohfjs4ym7kajncgufowo.png)
 
 Реализован на PHP/Javascript.
 
@@ -158,7 +158,7 @@
 
 ### [SpiderOak](https://spideroak.com/)
 
-[![](https://habrastorage.org/webt/w9/ce/k5/w9cek5imrxva3-chj9iejtwdh04.jpeg)](https://habrastorage.org/webt/w9/ce/k5/w9cek5imrxva3-chj9iejtwdh04.jpeg)
+[![](images/w9cek5imrxva3-chj9iejtwdh04.jpeg)](images/w9cek5imrxva3-chj9iejtwdh04.jpeg)
 
 Возможности:
 
@@ -218,7 +218,7 @@
 
 Далее, зайдите в NextCloud и выбрав в меню справа вверху "Приложения", выполните установку необходимых плагинов.
 
-[![Приложения](https://habrastorage.org/webt/sd/3y/rv/sd3yrvs5lqfdzig5smsbdasiiw0.png)](https://habrastorage.org/webt/sd/3y/rv/sd3yrvs5lqfdzig5smsbdasiiw0.png)
+[![Приложения](images/sd3yrvs5lqfdzig5smsbdasiiw0.png)](images/sd3yrvs5lqfdzig5smsbdasiiw0.png)
 
 Потребуются обязательно:
 
@@ -258,7 +258,7 @@
 Логин: `cn=admin,dc=nas,dc=nas`.
 NextCloud может управлять пользователями в базе LDAP и для этого ему потребуется администратор.
 
-[![](https://habrastorage.org/webt/9n/tg/h9/9ntgh9xbg3rtfvjrqid6qbj0a5y.png)](https://habrastorage.org/webt/9n/tg/h9/9ntgh9xbg3rtfvjrqid6qbj0a5y.png)
+[![](images/9ntgh9xbg3rtfvjrqid6qbj0a5y.png)](images/9ntgh9xbg3rtfvjrqid6qbj0a5y.png)
 
 Нажимайте кнопку "Проверить конфигурацию DN" и, если индикатор проверки зелёный, кнопку "Далее".
 
@@ -298,7 +298,7 @@ NextCloud может управлять пользователями в базе
 
 ## OnlyOffice
 
-[![](https://habrastorage.org/webt/fr/rs/9e/frrs9euxco6_ycd8p_4a1y8bxiw.png)](https://habrastorage.org/webt/fr/rs/9e/frrs9euxco6_ycd8p_4a1y8bxiw.png)
+[![](images/frrs9euxco6_ycd8p_4a1y8bxiw.png)](images/frrs9euxco6_ycd8p_4a1y8bxiw.png)
 
 [OnlyOffice](https://onlyoffice.com) - это прекрасный кроссплатформенный офисный пакет, который поддерживает работу с документами MS Office. Он бесплатный и открытый, также как и [LibreOffice](https://ru.libreoffice.org/) и также способен работать, как сервер.
 
@@ -432,7 +432,7 @@ docker-compose up -d
 
 И, если всё работает, по адресу office.NAS.cloudns.cc будет следующая страница:
 
-[![Экран сервера OnlyOffice](https://habrastorage.org/webt/nt/e6/nq/nte6nqehacnsc__jn_zpqja9hi0.png)](https://habrastorage.org/webt/nt/e6/nq/nte6nqehacnsc__jn_zpqja9hi0.png)
+[![Экран сервера OnlyOffice](images/nte6nqehacnsc__jn_zpqja9hi0.png)](images/nte6nqehacnsc__jn_zpqja9hi0.png)
 
 Затем, в настройках NextCloud требуется выбрать Пункт "Администрирование->ONLYOFFICE" и прописать в первых двух полях адрес сервера документов: `https://office.NAS.cloudns.cc/` и ваш JWT token.
 

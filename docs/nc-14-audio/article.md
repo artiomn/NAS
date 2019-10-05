@@ -1,6 +1,6 @@
 # Мультимедийная система NAS 1: музыка
 
-![](https://habrastorage.org/webt/hj/21/oj/hj21oj1wv8rw-5bj5c0wz_il7se.gif)
+![](images/hj21oj1wv8rw-5bj5c0wz_il7se.gif)
 
 NAS может вполне себе использоваться для прослушивания музыки.
 Неожиданно, да?
