@@ -1,0 +1,26 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  urbackup:
+    image: uroni/urbackup-server
+    restart: always
+    expose:
+      - 55414
+    volumes:
+      - /tank0/apps/backup/urbackup/database:/var/urbackup
+      - /tank0/apps/backup/urbackup/backups:/backups
+      - /tank0/apps/backup/urbackup/log:/var/log
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - docker0
+    environment:
+    - VIRTUAL_HOST=backup.*
+    - VIRTUAL_PORT=55414
+    - VIRTUAL_PROTO=http
+    - CERT_NAME=NAS.cloudns.cc
+
