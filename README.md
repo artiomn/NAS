@@ -12,17 +12,20 @@ This is the complete configuration for a Linux-based multiservice secure server 
 ## Features
 
 - An open source solution.
-- Debian-based.
-- ZFS is the only filesystem that is used.
-- Full-disk encryption.
-- Protection against reboot. SSH server integrated in initramfs. You can decrypt disks remotely.
+- [Debian-based](https://www.debian.org/index.html).
+- [ZFS](https://zfsonlinux.org/) is the only filesystem that is used.
+- Full-disk encryption with a native [LUKS](https://gitlab.com/cryptsetup/cryptsetup/blob/master/README.md).
+- Protection against reboot. [Lightweight SSH server](https://matt.ucc.asn.au/dropbear/dropbear.html) integrated in initramfs. You can decrypt disks remotely.
 - All services communicate with user via HTTPS, even if the service does not explicitly support HTTPS.
-- HTTPS with a regular certificate signed by Let's Encrypt.
+- HTTPS with a regular certificate signed by [Let's Encrypt](https://letsencrypt.org/).
+- Certificate auto renewal.
 - One certificate for all services using reverse proxy.
+- Public-available services with [CloudNS](https://www.cloudns.net/).
 - Docker-isolation between services and between services and host.
 - Most services are well-tested and stable from [Linuxserver.io](https://www.linuxserver.io/) initiative.
 - Multiuser with one authorization provider.
 - LDAP as an authorization provider.
+- Service can use LDAP authorization even if it doesn't support LDAP native.
 - Integration between services. I.e. the media search service can use the torrent downloader to download movie.
 - Some services were patched by the author for integration with others (i.e. Nextcloud was patched for use inside iframe Organizr).
 
