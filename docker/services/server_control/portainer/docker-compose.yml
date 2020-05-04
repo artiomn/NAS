@@ -1,0 +1,25 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  portainer:
+    image: portainer/portainer
+    expose:
+      - 9000
+      - 8000
+    command: -H unix:///var/run/docker.sock
+    restart: always
+    networks:
+      - docker0
+    volumes:
+      - /tank0/apps/server_control/portainer:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - VIRTUAL_HOST=portainer.*
+      - VIRTUAL_PORT=9000
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
