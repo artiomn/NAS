@@ -1,0 +1,28 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  madsonic:
+    image: madsonic/ubuntu-madsonic
+    restart: always
+    networks:
+      - docker0
+    expose:
+      - 4040
+      - 4050
+    volumes:
+      #- /tank0/apps/media/madsonic:/config
+      - /tank0/apps/media/playlists:/playlists
+      - /tank0/user_data/music:/media
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=4040
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+
+   
