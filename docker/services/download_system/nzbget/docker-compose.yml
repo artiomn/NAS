@@ -1,0 +1,30 @@
+version: '3'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  nzbget:
+    container_name: nzbget
+    image: linuxserver/nzbget:latest
+    networks:
+      - docker0
+    expose:
+      - 6789
+    restart: unless-stopped
+    environment:
+      - PUID=33
+      - PGID=33
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=download-nzb.*
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=6789
+      - CERT_NAME=NAS.cloudns.cc
+      - LDAP_EXT_AUTH=true
+      - LDAP_EXT_ADD_GROUPS=(memberOf=cn=users_cloud,ou=groups,dc=nas,dc=nas)
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /tank0/user_data/downloads:/downloads
+      - /tank0/apps/download_system/nzbget/config:/config
