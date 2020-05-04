@@ -22,7 +22,6 @@ services:
       - VIRTUAL_HOST=library.*
       - VIRTUAL_PORT=2202
       - VIRTUAL_PROTO=http
-      - CERT_NAME=default
-
+      - CERT_NAME=NAS.cloudns.cc
       - PGID=33
       - PUID=33
