@@ -1,4 +1,4 @@
-version: '2'
+version: '3.3'
 
 networks:
   docker0:
@@ -7,20 +7,34 @@ networks:
 
 services:
   emby:
-    image: emby/embyserver:latest
+    image: emby/embyserver:beta
     restart: always
     networks:
       - docker0
+    devices:
+      - /dev/dri/card0:/dev/dri/renderD128:rw
     expose:
       - 8096
+      # HTTPS port.
+      # - 8920
+    ports:
+      - 7359:7359/udp
+      - 1900:1900/udp
+      - 1901:1901/udp
+      - 35599:35599/udp
+      - 56579:56579/udp
     volumes:
       - /tank0/apps/media/emby/config:/config
+      - /tank0/apps/media/emby/backup:/backup
       - /tank0/user_data:/mnt/share1
+      - /tank1/user_data:/mnt/share2
+      - /var/cache:/transcode
       #- /tank1/user_data:/mnt/share2
     environment:
       - GID=33
       - UID=33
-      - GIDLIST=33,100
+      # 44 - video group.
+      - GIDLIST=33,44,100
       - TZ=Europe/Moscow
       - VIRTUAL_HOST=media.*
       - VIRTUAL_PORT=8096
