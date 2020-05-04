@@ -1,0 +1,31 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  libresonic:
+    image: linuxserver/libresonic
+    restart: always
+    networks:
+      - docker0
+    expose:
+      - 4040
+    volumes:
+      - /tank0/apps/media/libresonic:/config
+      - /tank0/apps/media/playlists:/playlists
+      - /tank0/user_data/music:/music
+      - /tank0/user_data/videos:/media
+      - /tank0/user_data/podcasts:/podcasts
+    environment:
+      - PGID=33
+      - PUID=33
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=4040
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+
+   
