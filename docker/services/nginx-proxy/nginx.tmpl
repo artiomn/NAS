@@ -84,9 +84,8 @@ proxy_set_header X-Forwarded-Proto $proxy_x_forwarded_proto;
 proxy_set_header X-Forwarded-Ssl $proxy_x_forwarded_ssl;
 proxy_set_header X-Forwarded-Port $proxy_x_forwarded_port;
 
-# Allow iframing.
+# Allow iframing, hide SAMEORIGIN.
 proxy_hide_header X-Frame-Options;
-
 # Mitigate httpoxy attack (see README for details)
 proxy_set_header Proxy "";
 {{ end }}

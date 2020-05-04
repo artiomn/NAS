@@ -27,7 +27,7 @@ services:
       - internal
       - docker0
     restart: always
-    image: jwilder/nginx-proxy
+    image: jwilder/nginx-proxy:alpine
     ports:
       - "80:80"
       - "443:443"
@@ -38,16 +38,17 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./local-config:/etc/nginx/conf.d
       - ./nginx.tmpl:/app/nginx.tmpl
+      # Hack.
+      - ./openssl.cnf:/etc/ssl/openssl.cnf
     environment:
-      - DEFAULT_HOST=nas.nas
+      - DEFAULT_HOST=NAS.cloudns.cc
       - LDAP_BACKEND=ldap-auth
-      #- LDAP_BACKEND_PORT=8888
       #- LDAP_LOGIN_PORT=9000
       - LDAP_HOST=ldap://172.21.0.1:389
       #- LDAP_METHOD=start_tls
       - LDAP_METHOD=plain
       - LDAP_UID=uid
-      - LDAP_PASS=LDAP_PASSWORD
+      - LDAP_PASS=<CHANGEME LDAPPASSWOD>
       - LDAP_BASE=ou=users,dc=nas,dc=nas
       - LDAP_BIND_DN=cn=readonly,dc=nas,dc=nas
       - LDAP_USER_FILTER=(uid=%(username)s)
@@ -62,7 +63,8 @@ services:
     volumes:
       - ./certs/letsencrypt:/etc/letsencrypt
     environment:
-      - "LETSENCRYPT_USER_MAIL=MAIL@MAIL.COM"
-      - "LEXICON_PROVIDER=cloudns"
+      - "LETSENCRYPT_USER_MAIL=mail@mail.ru"
       - "LEXICON_OPTIONS=--delegated NAS.cloudns.cc"
-      - "LEXICON_PROVIDER_OPTIONS=--auth-id=CLOUDNS_ID --auth-password=CLOUDNS_PASSWORD"
+      - "LEXICON_PROVIDER=cloudns"
+      - "LEXICON_PROVIDER_OPTIONS=--auth-id=ID --auth-password=PASSWORD"
+
