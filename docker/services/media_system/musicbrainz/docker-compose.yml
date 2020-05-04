@@ -1,0 +1,27 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  musicbrainz:
+    image: linuxserver/musicbrainz
+    restart: always
+    networks:
+      - docker0
+    expose:
+      - 5000
+    volumes:
+      - /tank0/apps/media/musicbrainz/config:/config
+      - /tank0/user_data/music/Music:/music
+    environment:
+      - PGID=33
+      - PUID=33
+      - TZ=Europe/Moscow
+      - WEBADDRESS=test.NAS.cloudns.cc
+      - VIRTUAL_HOST=test.*
+      - VIRTUAL_PORT=5000
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
