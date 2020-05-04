@@ -1,0 +1,13 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ PAM_smbpass\[[[:digit:]]+\]: Located account for [-._[:alnum:]]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ PAM_smbpass\[[[:digit:]]+\]: password for \([-._[:alnum:]]+/[[:digit:]]+\) changed by \([-._[:alnum:]]+/[[:digit:]]+\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ nmbd\[[[:digit:]]+\]: +.* [[:digit:]a-f]+ \(.*\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ nmbd\[[[:digit:]]+\]: +.* current master browser = .*$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ nmbd\[[[:digit:]]+\]: +dump workgroup on subnet +(UNICAST_SUBNET|[[:digit:]\.]+): netmask= +[[:digit:]\.]+:$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ nmbd\[[[:digit:]]+\]: +dump_workgroups\(\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ nmbd\[[[:digit:]]+\]: .* find_.*$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ nmbd\[[[:digit:]]+\]: \[[[:digit:] \/:,]+\] nmbd/nmbd.c:process\([[:digit:]]+\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ nmbd\[[[:digit:]]+\]: \[[[:digit:] \/:,]+\] nmbd/nmbd_workgroupdb.c:dump_workgroups\([[:digit:]]+\)$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ nmbd\[[[:digit:]]+\]:[[:space:]]+Got SIGHUP dumping debug info\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ [ns]mbd\[[[:digit:]]+\]: connect from$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ [[:alnum:]]+ systemd\[[[:digit:]]+\]: Reloading Samba SMB Daemon.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ [[:alnum:]]+ systemd\[[[:digit:]]+\]: Reloaded Samba SMB Daemon.$
