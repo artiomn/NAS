@@ -1,6 +1,9 @@
 Secure NAS
 ==========
 
+![](https://raw.githubusercontent.com/artiomn/NAS/master/docs/nc-5-cycle/images/5snp2asrc-dlhjefcfawsaurfqo.png)
+
+
 ## What is it?
 
 This is the complete configuration for a Linux-based multiservice secure server that you can create yourself.
