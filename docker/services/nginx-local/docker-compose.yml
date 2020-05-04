@@ -13,11 +13,15 @@ services:
       - 80
       - 443
     environment:
-      - "VIRTUAL_HOST=NAS.cloudns.cc,nas,nas.*,www.*,omv.*,nas-controller.nas"
+      - "VIRTUAL_HOST=nas.*,omv.*,nas-controller.nas"
       - "VIRTUAL_PROTO=http"
       - "VIRTUAL_PORT=80"
       - CERT_NAME=NAS.cloudns.cc
+  #    - "LETSENCRYPT_HOST=nas,nas.nas"
+  #    - "LETSENCRYPT_EMAIL=admin@nas.nas"
     volumes:
       - ./local-config:/etc/nginx/conf.d
+#      - /etc/ssl/certs/openmediavault.crt:/certs/openmediavault.crt:ro
+#      - /etc/ssl/private/openmediavault.key:/certs/openmediavault.key:ro
     networks:
       - docker0
