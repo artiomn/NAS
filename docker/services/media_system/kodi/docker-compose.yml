@@ -1,0 +1,25 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  kodi:
+    image: celedhrim/kodi-server
+    restart: always
+    networks:
+      - docker0
+    expose:
+      - 8080
+    volumes:
+      - /tank0/apps/media/kodi/config:/opt/kodi-server/share/kodi/portable_data
+    environment:
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+
+   

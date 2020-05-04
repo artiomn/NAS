@@ -1,0 +1,32 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  kodi:
+    image: linuxserver/kodi-headless:latest
+    restart: always
+    networks:
+      - docker0
+    expose:
+      - 8080
+      - 9090
+    ports:
+      - 9777/udp
+    volumes:
+      - /tank0/apps/media/kodi/config:/config/.kodi
+      - /tank0/user_data/music/Music:/data/music
+      - /tank0/user_data/videos/Videos:/data/movies
+    environment:
+      - PGID=996
+      - PUID=1004
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+
+   
