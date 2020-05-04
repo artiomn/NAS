@@ -1,0 +1,38 @@
+version: '3'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  jellyfin:
+    image: linuxserver/jellyfin
+    restart: always
+    networks:
+      - docker0
+    devices:
+      - /dev/dri/card0:/dev/dri/renderD128
+      - /dev/dri:/dev/dri
+    expose:
+      - 8096
+      # HTTPS port.
+      # - 8920
+    volumes:
+      - /tank0/apps/media/jellyfin/config:/config
+      - /tank0/apps/media/jellyfin/backup:/backup
+      - /var/cache:/transcode
+      - /tank0/user_data:/mnt/share1
+      - /tank1/user_data:/mnt/share2
+      #- /tank1/user_data:/mnt/share2
+    environment:
+      - GID=33
+      - UID=33
+      #- UMASK_SET=022
+      # 44 - video group.
+      #- GIDLIST=33,44,100
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=test.*
+      - VIRTUAL_PORT=8096
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
