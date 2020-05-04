@@ -1,0 +1,98 @@
+version: '2'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+  local:
+
+services:
+
+  postgres:
+    restart: unless-stopped
+    env_file: env
+    networks:
+      - local
+    image: postgres:9.4
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  redis:
+    restart: unless-stopped
+    env_file: env
+    networks:
+      - local
+    image: redis:3
+    volumes:
+      - ./data/redis:/data
+
+  celeryworker:
+    restart: unless-stopped
+    image: funkwhale/funkwhale:latest
+    env_file: env
+    networks:
+      - local
+    command: celery -A funkwhale_api.taskapp worker -l INFO
+    links:
+      - postgres
+      - redis
+    environment:
+      - C_FORCE_ROOT=true
+    volumes:
+      - ./data/music:/music:ro
+      - ./data/media:/app/funkwhale_api/media
+
+  celerybeat:
+    restart: unless-stopped
+    image: funkwhale/funkwhale:latest
+    env_file: env
+    networks:
+      - local
+    command: celery -A funkwhale_api.taskapp beat -l INFO
+    links:
+      - postgres
+      - redis
+
+  api:
+    restart: unless-stopped
+    image: funkwhale/funkwhale:latest
+    env_file: env
+    networks:
+      - local
+      - docker0
+    volumes:
+      - /tank0/user_data/music:/music:ro
+      - ./data/media:/app/funkwhale_api/media
+      - ./data/static:/app/staticfiles
+      - ./front/dist:/frontend
+    expose:
+      - 5000
+      - 5001
+    links:
+      - postgres
+      - redis
+    environment:
+      - PGID=996
+      - PUID=1004
+      - TZ=Europe/Moscow
+      - VIRTUAL_HOST=media.*
+      - VIRTUAL_PORT=5001
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+
+  # If you want to have the nginx proxy managed by docker for some reason
+  # (i.e. if you use apache as a proxy on your host),
+  # you can uncomment the following lines.
+  # nginx:
+  #   image: nginx
+  #   links:
+  #     - api
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/conf.d/funkwhale.conf:ro
+  #     - ./funkwhale_proxy.conf:/etc/nginx/funkwhale_proxy.conf:ro
+  #     - ./data/media:/srv/funkwhale/data/media:ro
+  #     - ./front/dist:/srv/funkwhale/front/dist:ro
+  #     - ./data/static:/srv/funkwhale/data/static/:ro
+  #   ports:
+  #     - "127.0.0.1:5001:80"
+
