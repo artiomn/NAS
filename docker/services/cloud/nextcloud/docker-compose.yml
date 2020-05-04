@@ -19,7 +19,7 @@ services:
       - db.env
 
   redis:
-    image: redis
+    image: redis:rc-alpine
     restart: always
     # Only for the version 3.
     #sysctls:
@@ -55,13 +55,14 @@ services:
       - db.env
     environment:
       - POSTGRES_HOST=db
+      - NEXTCLOUD_TRUSTED_DOMAINS="NAS.cloudns.cc"
     depends_on:
       - db
       - redis
 
   cron:
-    image: nextcloud:16-fpm
-    #build: ./app
+    #image: nextcloud:16-fpm
+    build: ./app
     restart: always
     volumes:
       - /tank0/apps/cloud/nextcloud/html:/var/www/html

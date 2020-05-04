@@ -1,4 +1,4 @@
-FROM nextcloud:16-fpm
+FROM nextcloud:18-fpm
 
 #        supervisor \
 RUN echo "deb http://ftp.debian.org/debian stretch main" >> /etc/apt/sources.list \
@@ -15,7 +15,7 @@ RUN echo "deb http://ftp.debian.org/debian stretch main" >> /etc/apt/sources.lis
         inotify-tools \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
-    && ln -s "/usr/include/$(dpkg-architecture --query DEB_BUILD_MULTIARCH)/gmp.h" /usr/include/gmp.h \
+    && ln -fs "/usr/include/$(dpkg-architecture --query DEB_BUILD_MULTIARCH)/gmp.h" /usr/include/gmp.h \
     && docker-php-ext-install gmp imap \
     && pecl install smbclient inotify \
     && docker-php-ext-enable smbclient inotify \
