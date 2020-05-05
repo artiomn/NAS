@@ -13,7 +13,7 @@ This is the complete configuration for a Linux-based multiservice secure server 
 
 - An open source solution.
 - [Debian-based](https://www.debian.org/index.html).
-- [ZFS](https://zfsonlinux.org/) is the only filesystem that is used.
+- [ZFS](https://zfsonlinux.org/) is the only filesystem that is used. Root and boot on ZFS mirror.
 - Full-disk encryption with a native [LUKS](https://gitlab.com/cryptsetup/cryptsetup/blob/master/README.md).
 - Protection against reboot. [Lightweight SSH server](https://matt.ucc.asn.au/dropbear/dropbear.html) integrated in initramfs. You can decrypt disks remotely.
 - All services communicate with user via HTTPS, even if the service does not explicitly support HTTPS.
@@ -69,7 +69,7 @@ Implemented using [GitLab](https://gitlab.com/).
 
 ### Books library
 
-- Database with automatic sunchronization, based on [patched Calibre](https://github.com/artiomn/calibre). Only console. No user interaction required.
+- Database with automatic synchronization, based on [patched Calibre](https://github.com/artiomn/calibre). Only console. No user interaction required.
 - [Calibre-web](https://github.com/janeczku/calibre-web) as a web-interface.
 
 This service has an independent repository [here](https://github.com/artiomn/library-docker).
