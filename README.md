@@ -11,7 +11,7 @@ This is the complete configuration for a Linux-based multiservice secure server 
 
 ## Features
 
-- An open source solution.
+- A totally open source solution.
 - [Big hardware selection guide and "concurrents" description](docs/ru/nc-2-need-nas/article.md). On 2018.
 - [Debian-based](https://www.debian.org/index.html).
 - [ZFS](https://zfsonlinux.org/) is the only filesystem that is used. Root and boot on ZFS mirror.
