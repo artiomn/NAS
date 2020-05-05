@@ -12,7 +12,7 @@ This is the complete configuration for a Linux-based multiservice secure server 
 ## Features
 
 - An open source solution.
-- [Big hardware selection guide and "concurrents" description](docs/nc-2-need-nas/article.md). On 2018.
+- [Big hardware selection guide and "concurrents" description](docs/ru/nc-2-need-nas/article.md). On 2018.
 - [Debian-based](https://www.debian.org/index.html).
 - [ZFS](https://zfsonlinux.org/) is the only filesystem that is used. Root and boot on ZFS mirror.
 - Full-disk encryption with a native [LUKS](https://gitlab.com/cryptsetup/cryptsetup/blob/master/README.md).
@@ -110,7 +110,13 @@ Implemented using [Emby](https://emby.media/)
 [Organizr](https://github.com/causefx/Organizr).
 
 
+### Alternatives
+
+You can find here another services, such as [SeaFile](https://www.seafile.com/), but I don't use and support them inside NAS.
+
+
 ## Note
 
-This is a part of my article series on [building secure NAS](https://habr.com/post/359346/).
+This is a part of my article series on [building secure NAS](https://habr.com/post/359346/).  
 You can see a copy of the documentation in the [docs](docs) directory.
+
