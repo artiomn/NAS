@@ -29,8 +29,15 @@ This is the complete configuration for a Linux-based multiservice secure server 
 - Integration between services. I.e. the media search service can use the torrent downloader to download movie.
 - Some services were patched by the author for integration with others (i.e. Nextcloud was patched for use inside iframe Organizr).
 
+And much more...
+
 
 ## Subsystems
+
+### NAS control
+
+[OpenMediaVault](https://www.openmediavault.org/) installed as a package.
+
 
 ### Backup
 
