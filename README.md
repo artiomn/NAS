@@ -52,7 +52,7 @@ Implemented using:
 - [NextCloud](https://nextcloud.com/) as a cloud provider.
 - [OnlyOffice](https://www.onlyoffice.com/) as an office suite, integrated with NextCloud.
 
-![NextCloud UI](screenshots/ss_cloud.png)
+[![NextCloud UI](screenshots/ss_cloud.png)](screenshots/ss_cloud.png)
 
 
 ### Download subsystem
@@ -70,14 +70,14 @@ Implemented using:
   * [Jackett](https://github.com/Jackett/Jackett).
   * [Hydra2](https://github.com/theotherp/nzbhydra2).
 
-![Transmission UI](screenshots/ss_transmission.png)
+[![Transmission UI](screenshots/ss_transmission.png)](screenshots/ss_transmission.png)
 
 
 ### Version control system
 
 Implemented using [GitLab](https://gitlab.com/).
 
-![Gitlab UI](screenshots/ss_gitlab.png)
+[![Gitlab UI](screenshots/ss_gitlab.png)](screenshots/ss_gitlab.png)
 
 
 ### Books library
@@ -87,14 +87,14 @@ Implemented using [GitLab](https://gitlab.com/).
 
 This service has an independent repository [here](https://github.com/artiomn/library-docker).
 
-![Calibre-web UI](screenshots/ss_library.png)
+[![Calibre-web UI](screenshots/ss_library.png)](screenshots/ss_library.png)
 
 
 ### Media system
 
 Implemented using [Emby](https://emby.media/)
 
-![Emby UI](screenshots/ss_emby.png)
+[![Emby UI](screenshots/ss_emby.png)](screenshots/ss_emby.png)
 
 
 ### LDAP server
