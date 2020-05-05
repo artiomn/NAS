@@ -67,6 +67,14 @@ Implemented using:
 Implemented using [GitLab](https://gitlab.com/).
 
 
+### Books library
+
+- Database with automatic sunchronization, based on [patched Calibre](https://github.com/artiomn/calibre). Only console. No user interaction required.
+- [Calibre-web](https://github.com/janeczku/calibre-web) as a web-interface.
+
+This service has an independent repository [here](https://github.com/artiomn/library-docker).
+
+
 ### Media system
 
 Implemented using [Emby](https://emby.media/)
