@@ -1,7 +1,7 @@
 Secure NAS
 ==========
 
-![](https://raw.githubusercontent.com/artiomn/NAS/master/docs/nc-5-cycle/images/5snp2asrc-dlhjefcfawsaurfqo.png)
+![](docs/ru/nc-5-cycle/images/5snp2asrc-dlhjefcfawsaurfqo.png)
 
 
 ## What is it?
