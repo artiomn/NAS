@@ -1,0 +1,19 @@
+version: '2.3'
+
+networks:
+  gitlab:
+
+services:
+  gitlab-runner:
+    container_name: gitlab-runner
+    image: gitlab/gitlab-runner:latest
+    networks:
+      - gitlab
+    volumes:
+      - /tank0/apps/gitlab/gitlab-runner/data:/home/gitlab_ci_multi_runner/data
+      - /tank0/apps/gitlab/gitlab-runner/config:/etc/gitlab-runner
+    environment:
+      - CI_SERVER_URL=https://gitlab.NAS.cloudns.cc
+      - GIT_SUBMODULE_STRATEGY=recursive
+    restart: always
+
