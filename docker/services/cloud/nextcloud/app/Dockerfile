@@ -1,4 +1,4 @@
-FROM nextcloud:18-fpm
+FROM nextcloud:19-fpm
 
 #        supervisor \
 RUN echo "deb http://ftp.debian.org/debian stretch main" >> /etc/apt/sources.list \
