@@ -1,0 +1,16 @@
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: Internet Systems Consortium DHCP Client [.[:alnum:]-]+$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: Copyright 2004-20[[:digit:]]{2} Internet Systems Consortium\.$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: All rights reserved\.$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: For info, please visit https://www\.isc\.org/software/dhcp/$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]:$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\] Trying recorded lease [.0-9]{7,15}$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: DHCP(NAK|ACK|OFFER) (of [.0-9]{7,15} )?from [.0-9]{7,15}( \(xid=0x[0-9a-f]{1,8}\))?$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: DHCP(REQUEST|RELEASE) (of [.0-9]{7,15} )?on [[:alnum:].-]+ to [.0-9]{7,15} port 67( \(xid=0x[0-9a-f]{1,8}\))?$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: DHCPDISCOVER on [[:alnum:].-]+ to [.0-9]{7,15} port 67 interval [0-9]+( \(xid=0x[0-9a-f]{1,8}\))?$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: Killed old client process$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: Listening on [^[:space:].]+$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: No DHCPOFFERS received\.$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: No working leases in persistent database - sleeping\.$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: Sending on[[:space:]]+[^[:space:]]+$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: bound to [.0-9]{7,15} -- renewal in [0-9]+ seconds\.$
+^[[:alpha:]]{3} [ :[:digit:]]{11} [._[:alnum:]-]+ dhclient\[[[:digit:]]+\]: DHCPREQUEST for [.0-9]{7,15} on [[:alnum:]]+ to [.0-9]{7,15} port [0-9]+$

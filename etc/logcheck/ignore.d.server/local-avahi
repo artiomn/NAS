@@ -1,0 +1,20 @@
+#Avahi daemon casues a lot of spam. Add rules for the following type of messages;
+#Feb  7 19:15:47 alias avahi-daemon[772]: Invalid query packet.
+#Feb  7 19:16:51 alias avahi-daemon[772]: last message repeated 5 times
+#Feb  7 19:35:46 alias avahi-daemon[772]: Invalid response packet from host 130.89.170.253.
+#Note that the next rule is ugly, but i'm not sure how to filter it otherwise (except stopping rsyslog from summaryzing)
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: last message repeated [0-9]+ time(s)?$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: Invalid query packet.$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: Invalid response packet from host [[:alnum:]:.]+\.$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: Received response from host [[:alnum:].]+ with invalid source port [0-9]+ on interface '[[:alnum:]:.]+'$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: Registering new address record for [:0-9a-f]+ on [[:alnum:]]+\.\*\.$
+#Remove like:
+#Feb  8 16:55:24 alias avahi-daemon[908]: Received response from host 130.89.164.246 with invalid source port 52031 on interface 'eth0.0'
+#Feb  8 16:55:23 alias avahi-daemon[908]: Invalid legacy unicast query packet\.
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: Invalid legacy unicast query packet\.$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: Received response with invalid source port [0-9]+ on interface '[[:alnum:].]+'$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: Invalid response packet\.$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: New relevant interface [[:alnum:].]+ for mDNS\.$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: Registering new address record for [.0-9]{7,15} on [[:alnum:].]+\.$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ avahi-daemon\[[0-9]+\]: Joining mDNS multicast group on interface [[:alnum:].]+ with address [.0-9]{7,15}\.$
+
