@@ -7,7 +7,7 @@ networks:
 
 services:
   organizr:
-    image: linuxserver/organizr
+    image: organizr/organizr
     restart: always
     expose:
       - 80
