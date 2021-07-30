@@ -27,6 +27,7 @@ services:
     environment:
       - POSTGRES_DB=onlyoffice
       - POSTGRES_USER=onlyoffice
+      - POSTGRES_PASSWORD=<POSTGRES_PASSWORD_CHANGE_ME>
     networks:
       - onlyoffice
     restart: always
@@ -42,12 +43,12 @@ services:
       - onlyoffice-redis
       - onlyoffice-rabbitmq
     environment:
-      # Need to be `localhost` to enable JWT token auth.
       - ONLYOFFICE_DATA_CONTAINER_HOST=localhost
       - POSTGRESQL_SERVER_HOST=onlyoffice-postgresql
       - POSTGRESQL_SERVER_PORT=5432
       - POSTGRESQL_SERVER_DB_NAME=onlyoffice
       - POSTGRESQL_SERVER_USER=onlyoffice
+      - POSTGRESQL_SERVER_PASS=<POSTGRES_PASSWORD_CHANGE_ME>
       - RABBITMQ_SERVER_URL=amqp://guest:guest@onlyoffice-rabbitmq
       - REDIS_SERVER_HOST=onlyoffice-redis
       - REDIS_SERVER_PORT=6379
@@ -56,7 +57,7 @@ services:
       - HTTP_CHECK=GET /healthcheck
       - EXTRA_SETTINGS=http-check expect string true
       - JWT_ENABLED=true
-      - JWT_SECRET=<CHANGE_ME>
+      - JWT_SECRET=<JWT_SECRET_NEED_TO_GENERATE_USING_WEB_SERVICE>
       # Uncomment the string below to redirect HTTP request to HTTPS request.
       #- FORCE_SSL=true
       - VIRTUAL_HOST=office.*
@@ -78,6 +79,7 @@ services:
       - /tank0/apps/onlyoffice/document-server/cache:/var/lib/onlyoffice/documentserver/App_Data/cache/files
       - /tank0/apps/onlyoffice/document-server/files:/var/www/onlyoffice/documentserver-example/public/files
       - /usr/share/fonts
+      - ./ds-example.conf:/etc/supervisor/conf.d/ds-example.conf:ro
 
 networks:
   onlyoffice:
