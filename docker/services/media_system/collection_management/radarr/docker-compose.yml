@@ -1,0 +1,34 @@
+version: '3.4'
+
+# Base: https://github.com/sebgl/htpc-download-box
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  radarr:
+    container_name: radarr
+    image: linuxserver/radarr:latest
+    restart: unless-stopped
+    networks:
+      - docker0
+    expose:
+      - 7878
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+      - VIRTUAL_HOST=ds-radarr.*
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=7878
+      - CERT_NAME=${CERT_NAME}
+      - LDAP_EXT_AUTH=${LDAP_EXT_AUTH}
+      - LDAP_EXT_ADD_GROUPS=${LDAP_EXT_ADD_GROUPS}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${APPS_CONFIG}/radarr:/config # config files
+      - ${ROOT}/downloads/complete:/downloads # download folder
+      - ${ROOT}/videos/Films:/movies # movies folder
+

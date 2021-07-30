@@ -1,0 +1,34 @@
+version: '3.4'
+
+# Base: https://github.com/sebgl/htpc-download-box
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  sonarr:
+    container_name: sonarr
+    image: linuxserver/sonarr:latest
+    restart: unless-stopped
+    networks:
+      - docker0
+    expose:
+      - 8989
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+      - VIRTUAL_HOST=ds-sonarr.*
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=8989
+      - CERT_NAME=${CERT_NAME}
+      - LDAP_EXT_AUTH=${LDAP_EXT_AUTH}
+      - LDAP_EXT_ADD_GROUPS=${LDAP_EXT_ADD_GROUPS}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${APPS_CONFIG}/sonarr:/config # config files
+      - ${ROOT}/downloads/complete/:/downloads # download folder
+      - /tank1/user_data/videos/TV:/tv # tv shows folder
+

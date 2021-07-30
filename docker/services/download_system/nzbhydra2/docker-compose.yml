@@ -1,0 +1,33 @@
+version: '3.4'
+
+# Base: https://github.com/sebgl/htpc-download-box
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  hydra2:
+    image: linuxserver/nzbhydra2
+    container_name: hydra2
+    restart: unless-stopped
+    networks:
+      - docker0
+    expose:
+      - 5076
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+    environment:
+#      - RUN_OPTS=<run options here> #optional
+      - VIRTUAL_HOST=ds-hydra2.*
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=5076
+      - CERT_NAME=${CERT_NAME}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${APPS_CONFIG}/hydra2/:/config
+      - ${ROOT}/downloads/complete:/downloads
+

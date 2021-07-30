@@ -1,0 +1,35 @@
+version: '3.4'
+
+# Base: https://github.com/sebgl/htpc-download-box
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  lidarr:
+    container_name: lidarr
+    image: linuxserver/lidarr:latest
+    restart: unless-stopped
+    networks:
+      - docker0
+    expose:
+      - 8686
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+      - VIRTUAL_HOST=ds-lidarr.*
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=8686
+      - CERT_NAME=${CERT_NAME}
+      - LDAP_EXT_AUTH=${LDAP_EXT_AUTH}
+      - LDAP_EXT_ADD_GROUPS=${LDAP_EXT_ADD_GROUPS}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ${APPS_CONFIG}/lidarr:/config # config files
+      - ${ROOT}/downloads/complete:/downloads # download folder
+      - ${ROOT}/music/Music:/music # music folder
+      - ${ROOT}/videos/Clips:/movies # movies folder
+

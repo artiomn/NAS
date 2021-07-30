@@ -1,0 +1,31 @@
+version: '3.4'
+
+# Base: https://github.com/sebgl/htpc-download-box
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  jackett:
+    image: ghcr.io/linuxserver/jackett
+    container_name: jackett
+    restart: unless-stopped
+    networks:
+      - docker0
+    expose:
+      - 9117
+    environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - TZ=${TZ} # timezone, defined in .env
+#      - RUN_OPTS=<run options here> #optional
+      - VIRTUAL_HOST=ds-jackett.*
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=9117
+      - CERT_NAME=${CERT_NAME}
+    volumes:
+      - ${APPS_CONFIG}/jackett/:/config
+      - ${ROOT}/downloads/torrent-files:/downloads # place where to put .torrent files for manual download
+
