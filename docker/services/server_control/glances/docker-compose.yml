@@ -7,7 +7,7 @@ networks:
 
 services:
   glances:
-    image: docker.io/nicolargo/glances
+    image: nicolargo/glances
     restart: always
 #    pid: "host"
     expose:
