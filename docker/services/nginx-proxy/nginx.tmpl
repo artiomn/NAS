@@ -212,7 +212,7 @@ upstream {{ $upstream_name }} {
 
 {{ if eq $https_method "redirect" }}
 server {
-	server_name {{ $host }};
+	server_name www.{{ $host }} {{ $host }};
 	listen 80 {{ $default_server }};
 	{{ if $enable_ipv6 }}
 	listen [::]:80 {{ $default_server }};
@@ -224,7 +224,7 @@ server {
 {{ end }}
 
 server {
-	server_name {{ $host }};
+	server_name www.{{ $host }} {{ $host }};
 	listen 443 ssl http2 {{ $default_server }};
 	{{ if $enable_ipv6 }}
 	listen [::]:443 ssl http2 {{ $default_server }};
@@ -385,7 +385,6 @@ server {
                 # authentication.
                 proxy_set_header X-CookieName "nginxauth";
                 proxy_set_header Cookie nginxauth=$cookie_nginxauth;
-
                 # (Required if using Microsoft Active Directory as the LDAP server)
                 # Set the LDAP template by uncommenting the following directive.
                 #proxy_set_header X-Ldap-Template "(sAMAccountName=%(username)s)";
@@ -452,7 +451,7 @@ server {
 {{ if or (not $is_https) (eq $https_method "noredirect") }}
 
 server {
-	server_name {{ $host }};
+	server_name www.{{ $host }} {{ $host }};
 	listen 80 {{ $default_server }};
 	{{ if $enable_ipv6 }}
 	listen [::]:80 {{ $default_server }};
@@ -495,7 +494,7 @@ server {
 
 {{ if (and (not $is_https) (exists "/etc/nginx/certs/default.crt") (exists "/etc/nginx/certs/default.key")) }}
 server {
-	server_name {{ $host }};
+	server_name www.{{ $host }} {{ $host }};
 	listen 443 ssl http2 {{ $default_server }};
 	{{ if $enable_ipv6 }}
 	listen [::]:443 ssl http2 {{ $default_server }};

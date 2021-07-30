@@ -1,0 +1,20 @@
+draft: false
+acme:
+  email_account: YOUR_MAIL@mail.ru
+  staging: false
+  api_version: 2
+
+profiles:
+  - delegated_subdomain: NAS.cloudns.cc
+    name: cloudns_profile
+    provider: cloudns
+    provider_options:
+      auth_id: YOUR_ID
+      auth_password: YOUR_PASSWORD
+
+certificates:
+  - domains:
+    - "*.NAS.cloudns.cc"
+    - NAS.cloudns.cc
+    profile: cloudns_profile
+

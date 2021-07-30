@@ -48,23 +48,19 @@ services:
       #- LDAP_METHOD=start_tls
       - LDAP_METHOD=plain
       - LDAP_UID=uid
-      - LDAP_PASS=<CHANGEME LDAPPASSWOD>
+      - LDAP_PASS=<READ_ONLY_LDAP_USER_PASSWORD>
       - LDAP_BASE=ou=users,dc=nas,dc=nas
       - LDAP_BIND_DN=cn=readonly,dc=nas,dc=nas
       - LDAP_USER_FILTER=(uid=%(username)s)
+      - LDAP_COOKIE=nginxauth=$$cookie_nginxauth; domain=*.NAS.cloudns.cc
       #- LDAP_USE_LOGIN_PAGE=true
 
     labels:
       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
 
   letsencrypt-dns:
-    image: adferrand/letsencrypt-dns
+    image: adferrand/dnsrobocert
     restart: always
     volumes:
       - ./certs/letsencrypt:/etc/letsencrypt
-    environment:
-      - "LETSENCRYPT_USER_MAIL=mail@mail.ru"
-      - "LEXICON_OPTIONS=--delegated NAS.cloudns.cc"
-      - "LEXICON_PROVIDER=cloudns"
-      - "LEXICON_PROVIDER_OPTIONS=--auth-id=ID --auth-password=PASSWORD"
-
+      - ./certs/dnsrobocert:/etc/dnsrobocert
