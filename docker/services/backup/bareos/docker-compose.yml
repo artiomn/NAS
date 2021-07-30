@@ -1,101 +1,92 @@
-version: '2'
+version: '3'
 
 networks:
-  bareos:
   docker0:
     external:
       name: docker0
 
 services:
   bareos-dir:
-    #image: barcus/bareos-director:mysql_17 #(Bareos 17.2)
-    #image: barcus/bareos-director:mysql_18 #(Bareos 18.2)
-    image: barcus/bareos-director:pgsql_latest
-    networks:
-      - docker0
-      - bareos
+    image: barcus/bareos-director:19-alpine
+    restart: always
     volumes:
-      - /tank0/apps/backup/bareos/var/bareos:/var/lib/bareos
-      - /tank0/apps/backup/bareos/config:/etc/bareos
-      - /tank0/apps/backup/bareos/log:/var/log
-      - /etc/localtime:/etc/localtime:ro
+      # required for MyCatalog backup
+      - /tank0/apps/backup/bareos/data:/var/lib/bareos
     environment:
-      - DB_PASSWORD=ThisIsMySecretDBp4ssw0rd
       - DB_HOST=bareos-db
-      - DB_PORT=5432
-      - BAREOS_FD_HOST=bareos-fd
+      - DB_PORT=3306
+      - DB_PASSWORD=<DB_PASSWORD_TO_CHANGE>
+      - DB_NAME=bareos
+      - DB_USER=root
       - BAREOS_SD_HOST=bareos-sd
-      - BAREOS_FD_PASSWORD=ThisIsMySecretFDp4ssw0rd
-      - BAREOS_SD_PASSWORD=ThisIsMySecretSDp4ssw0rd
-      - BAREOS_WEBUI_PASSWORD=ThisIsMySecretUIp4ssw0rd
+      - BAREOS_SD_PASSWORD=<SD_PASSWORD_TO_CHANGE>
+      - BAREOS_FD_HOST=bareos-fd
+      - BAREOS_FD_PASSWORD=<FD_PASSWORD_TO_CHANGE>
+      - BAREOS_WEBUI_PASSWORD=admin
       - SMTP_HOST=smtpd
-      - ADMIN_MAIL=your@mail.address # Change me!
+      - ADMIN_MAIL=mail@yandex.ru  # Change me!
     depends_on:
       - bareos-db
 
   bareos-sd:
-    #image: barcus/bareos-storage:17
-    #image: barcus/bareos-storage:18
-    image: barcus/bareos-storage:latest
-    networks:
-      - docker0
-      - bareos
+    image: barcus/bareos-storage:19-alpine
+    restart: always
     ports:
       - 9103:9103
     volumes:
-      - /tank0/apps/backup/bareos/config:/etc/bareos
-      - /tank0/apps/backup/bareos/storage:/var/lib/bareos/storage
+      - /tank0/apps/backup/bareos/data/archive:/var/lib/bareos/archive
     environment:
-      - BAREOS_SD_PASSWORD=ThisIsMySecretSDp4ssw0rd
+      - BAREOS_SD_PASSWORD=<SD_PASSWORD_TO_CHANGE>
 
   bareos-fd:
-    #image: barcus/bareos-client:17
-    #image: barcus/bareos-client:18
-    image: barcus/bareos-client:latest
-    networks:
-      - bareos
+    image: barcus/bareos-client:19-alpine
+    restart: always
     volumes:
-      - /tank0/apps/backup/bareos/config:/etc/bareos
-      - /tank0/apps/backup/bareos/var/bareos-director:/var/lib/bareos-director # (required for MyCatalog backup)
+      # required for MyCatalog backup
+      - /tank0/apps/backup/bareos/data:/var/lib/bareos-director
     environment:
-      - BAREOS_FD_PASSWORD=ThisIsMySecretFDp4ssw0rd
+      - BAREOS_FD_PASSWORD=<FD_PASSWORD_TO_CHANGE>
 
   bareos-webui:
-    #image: barcus/bareos-webui:17
-    #image: barcus/bareos-webui:18
-    image: barcus/bareos-webui:latest
-    expose:
-      - 80
-    networks:
-      - docker0
-      - bareos
-    links:
-      - bareos-dir
+    image: barcus/bareos-webui:19-alpine
+#    ports:
+#      - 8080:9100
     environment:
       - BAREOS_DIR_HOST=bareos-dir
+      - PHP_FPM_HOST=php-fpm
+      - PHP_FPM_PORT=9000
+
+      - VIRTUAL_HOST=backup.*
+      - VIRTUAL_PORT=9100
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+      - TZ=Europe/Moscow
+    networks:
+      - default
+      - docker0
     volumes:
-      - /tank0/apps/backup/bareos/config/bareos-webui:/etc/bareos-webui
-    environment:
-    - VIRTUAL_HOST=backup.*
-    - VIRTUAL_PORT=80
-    - VIRTUAL_PROTO=http
-    - CERT_NAME=NAS.cloudns.cc
+      - /tank0/apps/backup/bareos/config/webui:/etc/bareos-webui
+      - /tank0/apps/backup/bareos/data/webui:/usr/share/bareos-webui
+    depends_on:
+      - php-fpm
+
+  php-fpm:
+    image: barcus/php-fpm-alpine
+    restart: always
+    expose:
+      - 8080
+    volumes:
+      - /tank0/apps/backup/bareos/config/webui:/etc/bareos-webui
+      - /tank0/apps/backup/bareos/data/webui:/usr/share/bareos-webui
 
   bareos-db:
-    image: postgres:9.3
-    networks:
-      - bareos
+    image: mysql:5.6
+    restart: always
     volumes:
-      - /tank0/apps/backup/bareos/var/postgresql:/var/lib/postgresql/data
+      - /data/mysql/data:/var/lib/mysql
     environment:
-      - POSTGRES_PASSWORD=ThisIsMySecretDBp4ssw0rd
-
-  # bareos-db:
-  #  image: mysql:5.6
-  #  volumes:
-  #    - <DB_DATA_PATH>:/var/lib/mysql
-  #  environment:
-  #    - MYSQL_ROOT_PASSWORD=ThisIsMySecretDBp4ssw0rd
+      - MYSQL_ROOT_PASSWORD=<DB_PASSWORD_TO_CHANGE>
 
   smtpd:
     image: namshi/smtp
+#EOF
