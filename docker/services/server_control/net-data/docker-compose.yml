@@ -8,7 +8,8 @@ networks:
 services:
   netdata:
     image: netdata/netdata
-    hostname: test.NAS.cloudns.cc
+    restart: always
+    hostname: control.system.cloudns.cc
     cap_add:
       - SYS_PTRACE
     security_opt:
@@ -19,8 +20,12 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./hddtemp.conf:/etc/netdata/python.d/hddtemp.conf:ro
     environment:
-      - VIRTUAL_HOST=test.*
+      - VIRTUAL_HOST=control.*
       - VIRTUAL_PORT=19999
       - VIRTUAL_PROTO=http
       - CERT_NAME=NAS.cloudns.cc
+      - LDAP_EXT_AUTH=true
+      - LDAP_EXT_ADD_GROUPS=(memberOf=cn=users_cloud,ou=groups,dc=nas,dc=nas)
+
