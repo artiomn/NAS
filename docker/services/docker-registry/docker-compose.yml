@@ -1,0 +1,40 @@
+version: '3.1'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  docker-registry:
+    restart: always
+    image: registry:2
+    volumes:
+      - /tank0/apps/docker-registry:/var/lib/registry
+      - /tank0/apps/docker-registry/certs:/certs
+      - /tank0/apps/docker-registry/auth:/auth:ro
+    environment:
+      - REGISTRY_LOG_LEVEL=info
+      - REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/registry
+
+      - REGISTRY_AUTH_TOKEN_REALM=https://git.systm.cloudns.cc/jwt/auth
+      - REGISTRY_AUTH_TOKEN_SERVICE=container_registry
+      - REGISTRY_AUTH_TOKEN_ISSUER=gitlab-issuer
+      - REGISTRY_STORAGE_DELETE_ENABLED=true
+      - REGISTRY_AUTH_TOKEN_ROOTCERTBUNDLE=/certs/registry-auth.pem
+      - REGISTRY_HTTP_TLS_CERTIFICATE=/certs/registry-auth.crt
+      - REGISTRY_HTTP_TLS_KEY=/certs/registry-auth.key
+
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+
+      - VIRTUAL_HOST=docker-registry.*
+      - VIRTUAL_PORT=5000
+      - VIRTUAL_PROTO=https
+      - CERT_NAME=NAS.cloudns.cc
+    expose:
+      - 5000
+    networks:
+      - docker0
+
