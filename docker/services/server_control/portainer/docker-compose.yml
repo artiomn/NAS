@@ -7,10 +7,9 @@ networks:
 
 services:
   portainer:
-    image: portainer/portainer
+    image: portainer/portainer-ce
     expose:
       - 9000
-      - 8000
     command: -H unix:///var/run/docker.sock
     restart: always
     networks:
@@ -23,3 +22,5 @@ services:
       - VIRTUAL_PORT=9000
       - VIRTUAL_PROTO=http
       - CERT_NAME=NAS.cloudns.cc
+#      - LDAP_EXT_AUTH=true
+#      - LDAP_EXT_ADD_GROUPS=(memberOf=cn=users_cloud,ou=groups,dc=nas,dc=nas)
