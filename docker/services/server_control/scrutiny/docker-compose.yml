@@ -1,0 +1,43 @@
+version: "2.1"
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  scrutiny:
+    image: ghcr.io/linuxserver/scrutiny
+    container_name: scrutiny
+    cap_add:
+      - SYS_RAWIO
+#      - SYS_ADMIN #optional
+    environment:
+      - PUID=33
+      - PGID=33
+      - TZ=Europe/Moscow
+      - SCRUTINY_API_ENDPOINT=http://localhost:8080
+      - SCRUTINY_WEB=true
+      - SCRUTINY_COLLECTOR=true
+      - VIRTUAL_HOST=test.*
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+    networks:
+      - docker0
+    volumes:
+      - /tank0/apps/server_control/scrutiny:/config
+      - /run/udev:/run/udev:ro
+    expose:
+      - 8080
+    devices:
+      - /dev/sda:/dev/sda
+      - /dev/sdb:/dev/sdb
+      - /dev/sdc:/dev/sdc
+      - /dev/sdd:/dev/sdd
+      - /dev/sde:/dev/sde
+      - /dev/sdf:/dev/sdf
+      - /dev/sdg:/dev/sdg
+      - /dev/sdh:/dev/sdh
+    restart: unless-stopped
+
