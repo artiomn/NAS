@@ -1,0 +1,6 @@
+#!/bin/bash
+
+url=http://localhost/-/liveness
+options=( '--insecure' '--location' '--silent' )
+curl "${options[@]}" $url
+[[ "$(curl ${options[@]} -o /dev/null -I -w '%{http_code}' $url)" == "200" ]]
