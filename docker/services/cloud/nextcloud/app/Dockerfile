@@ -1,4 +1,4 @@
-FROM nextcloud:19-fpm
+FROM nextcloud:21-fpm
 
 #        supervisor \
 RUN echo "deb http://ftp.debian.org/debian stretch main" >> /etc/apt/sources.list \
@@ -8,6 +8,7 @@ RUN echo "deb http://ftp.debian.org/debian stretch main" >> /etc/apt/sources.lis
         libgmp3-dev \
         libc-client-dev \
         libkrb5-dev \
+        libbz2-1.0 \
         python \
         smbclient \
         sudo \

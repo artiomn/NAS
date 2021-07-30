@@ -12,6 +12,9 @@ ALLOWED_FRAME_ANCESTORS="'${PROTO}://${MY_DOMAIN}', '${PROTO}://www.${MY_DOMAIN}
 FILE_TO_PATCH="${CONFIG_PATH}/html/lib/public/AppFramework/Http/ContentSecurityPolicy.php"
 RESPONSE_FILE="${CONFIG_PATH}/html/lib/private/legacy/OC_Response.php"
 
+# Need to fix rights after the applications update.
+chmod -R ug+rx "${CONFIG_PATH}/html/custom_apps"
+
 cp "$FILE_TO_PATCH" "${FILE_TO_PATCH}.bak"
 sed -i "
   s|\(allowedFrameDomains *= *\)\[\];|\1[${ALLOWED_DOMAINS}];|;

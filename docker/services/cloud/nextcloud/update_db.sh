@@ -2,8 +2,8 @@
 
 set -xeuo pipefail
 
-export OLD=${OLD:-"10"}
-export NEW=${NEW:-"12"}
+export OLD=${OLD:-"12"}
+export NEW=${NEW:-"13"}
 export SRC_DIR=${SRC_DIR:-"/tank0/apps/cloud/nextcloud/"}
 
 docker run \
