@@ -8,7 +8,8 @@
 - Setup DNS.
 - Install Docker.
 - Copy docker-compose configuration.
-- Configure and run services.
+- Configure and run LDAP server and reverse proxy.
+- Configure and run other services.
 - Setup front-end.
 
 
@@ -38,7 +39,9 @@ Buy constant IP and create NAT, using port 443.
 
 ### Copy docker-compose configuration
 
-### Configure and run services
+### Configure and run LDAP server and reverse proxy
+
+### Configure and run other services
 
 ### Setup front-end
 
