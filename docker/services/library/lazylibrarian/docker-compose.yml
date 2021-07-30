@@ -1,0 +1,34 @@
+#
+# Library management service.
+#
+
+version: '2.1'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  lazylibrarian:
+    restart: always
+    image: ghcr.io/linuxserver/lazylibrarian
+    networks:
+      - docker0
+    expose:
+      - 5299
+    volumes:
+      - /tank0/apps/library/lazylibrarian:/config
+      - /tank0/user_data/downloads/complete:/downloads
+      - /tank0/user_data/books/Books:/books
+    environment:
+      - VIRTUAL_HOST=librarian.*
+      - VIRTUAL_PORT=5299
+      - VIRTUAL_PROTO=http
+      - CERT_NAME=NAS.cloudns.cc
+      - TZ=Europe/Moscow
+      - PGID=33
+      - PUID=33
+      - LDAP_EXT_AUTH=true
+      - LDAP_EXT_ADD_GROUPS=(memberOf=cn=users_cloud,ou=groups,dc=nas,dc=nas)
+

@@ -1,0 +1,29 @@
+#
+# Calibre.
+#
+
+version: '2.1'
+
+networks:
+  docker0:
+    external:
+      name: docker0
+
+services:
+  calibre:
+    restart: unless-stopped
+    build: ./app
+    networks:
+      - docker0
+    volumes:
+      - /tank0/user_data/books/Books:/books:ro
+      - /tank0/user_data/books/database:/data:rw
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - PGID=33
+      - PUID=33
+      - IGNORE_PATTERN=
+    tmpfs:
+      - /var/run:uid=33,gid=33
+      - /var/cache:uid=33,gid=33
+      - /tmp:uid=33,gid=33
