@@ -29,4 +29,3 @@ services:
       - CERT_NAME=NAS.cloudns.cc
       - LDAP_EXT_AUTH=true
       - LDAP_EXT_ADD_GROUPS=(memberof=cn=users_cloud,ou=groups,dc=nas,dc=nas)
-
